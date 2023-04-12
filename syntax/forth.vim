@@ -1,10 +1,10 @@
 " Vim syntax file
-" Language:    FORTH
-" Current Maintainer:  Johan Kotlinski <kotlinski@gmail.com>
-" Previous Maintainer:  Christian V. J. Br�ssow <cvjb@cvjb.de>
-" Last Change: 2023-01-12
-" Filenames:   *.fs,*.ft
-" URL:	       https://github.com/jkotlinski/forth.vim
+" Language:		Forth
+" Maintainer:		Johan Kotlinski <kotlinski@gmail.com>
+" Previous Maintainer:	Christian V. J. Brüssow <cvjb@cvjb.de>
+" Last Change:		2023 Apr 12
+" Filenames:		*.f,*.fs,*.ft,*.fth,*.4th
+" URL:			https://github.com/jkotlinski/forth.vim
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
