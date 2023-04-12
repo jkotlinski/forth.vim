@@ -13,9 +13,9 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 setlocal commentstring=\\\ %s
-setlocal comments=b:\\,s:.(,mb:\ ,e:)
+setlocal comments=b:\\,s:(,mb:\ ,e:)
 setlocal formatoptions-=t formatoptions+=croql
-setlocal iskeyword=!,@,33-35,%,$,38-64,A-Z,91-96,a-z,123-126,128-255
+setlocal iskeyword=33-126,128-255
 
 let b:undo_ftplugin = "setl cms< com< fo< isk<"
 

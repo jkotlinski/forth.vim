@@ -26,7 +26,7 @@ syn keyword forthTodo contained TODO FIXME XXX
 
 " Characters allowed in keywords
 " I don't know if 128-255 are allowed in ANS-FORTH
-syn iskeyword !,@,33-35,%,$,38-64,A-Z,91-96,a-z,123-126,128-255
+syn iskeyword 33-126,128-255
 
 " when wanted, highlight trailing white space
 if exists("forth_space_errors")
