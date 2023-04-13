@@ -15,7 +15,6 @@
 \ Verify that strings have their own color.
 s" s-quote"
 c" c-quote"
-\" a string, too" ( What is \" ? )
 s\" s-backslash-quote"
 
 \ Verify that escaped characters have their own color.
