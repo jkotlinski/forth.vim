@@ -209,7 +209,8 @@ syn match forthInclude '^REQUIRE\s\+\k\+'
 syn match forthInclude '^FLOAD\s\+'
 syn match forthInclude '^NEEDS\s\+'
 
-" Locals definitions
+" Locals definitions.
+" TODO: update to Forth standard.
 syn region forthLocals start='{\s' start='{$' end='\s}' end='^}'
 syn match forthLocals '{ }' " otherwise, at least two spaces between
 syn region forthDeprecated start='locals|' end='|'
