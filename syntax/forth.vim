@@ -183,7 +183,7 @@ syn match forthInteger '\<-\=[0-9]\+.\=\>'
 syn match forthInteger '\<#-\=[0-9]\+.\=\>'
 syn match forthInteger '\<\$-\=\x*\x\+\>'
 syn match forthInteger '\<%-\=[0-1]*[0-1]\+\>'
-syn match forthFloat '\<+\=-\=\d*[.]\=\d*[DdEe][-+]\=\d*\>'
+syn match forthFloat '\<[+-]\=\d*[.]\=\d*[DdEe][+-]\=\d*\>'
 
 " XXX If you find this overkill you can remove it. this has to come after the
 " highlighting for numbers otherwise it has no effect.
