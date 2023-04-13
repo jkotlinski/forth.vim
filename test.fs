@@ -1,6 +1,6 @@
 ( This file tests Forth syntax highlighting.
-  The goal is that it will test all functionality.
-  Please add to it as you make changes. )
+  The goal is that it will cover all functionality.
+  Please update this file as you make changes. )
 
 \ --- Comments
 
