@@ -195,11 +195,15 @@ syn match forthFloat '\<-\=\d*[.]\=\d\+[DdEe][-+]\d\+\>'
 syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains=forthTodo
 
 " Strings
-syn region forthString start=+\.*\"+ end=+"+ end=+$+ contains=@Spell
+syn region forthString start=+\.*"+ end=+"+ end=+$+ contains=@Spell
 " XXX
-syn region forthString start=+s\"+ end=+"+ end=+$+ contains=@Spell
-syn region forthString start=+s\\\"+ end=+"+ end=+$+ contains=@Spell
-syn region forthString start=+c\"+ end=+"+ end=+$+ contains=@Spell
+syn region forthString start=+s"+ end=+"+ end=+$+ contains=@Spell
+syn region forthString start=+c"+ end=+"+ end=+$+ contains=@Spell
+
+syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
+
+syn match forthEscape +\\[abeflmnqrtvz"\\]+ contained
+syn match forthEscape "\\x\x\x" contained
 
 " Comments
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
@@ -243,6 +247,7 @@ hi def link forthCharOps Character
 hi def link forthConversion String
 hi def link forthForth Statement
 hi def link forthVocs Statement
+hi def link forthEscape Special
 hi def link forthString String
 hi def link forthComment Comment
 hi def link forthClassDef Define
