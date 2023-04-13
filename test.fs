@@ -153,6 +153,11 @@ DECIMAL HEX BASE
 [char] ( this-is-not-a-comment
 char ( this-is-not-a-comment
 
-\ ---- Abort
+\ --- Abort
 
 ABORT" this is an abort message"
+
+\ --- Numbers
+123 #123 -123 #-123
+$123 $cafe $-123 $-cafe
+%1010 %-1010
