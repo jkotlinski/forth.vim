@@ -143,7 +143,6 @@ syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
 " highlight everything after the paren as a comment till a closing ')'
 syn match forthCharOps '\<char\s\S\s'
 syn match forthCharOps '\<\[char\]\s\S\s'
-syn region forthCharOps start=+."\s+ skip=+\\"+ end=+"+
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
@@ -194,6 +193,7 @@ syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains
 syn region forthString start=+s\"+ end=+"+ end=+$+ contains=@Spell
 syn region forthString start=+s\\\"+ end=+"+ end=+$+ contains=@Spell
 syn region forthString start=+c\"+ end=+"+ end=+$+ contains=@Spell
+syn region forthString start=+\."\s+ skip=+\\"+ end=+"+
 
 " Comments
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError

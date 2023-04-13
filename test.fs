@@ -16,6 +16,7 @@
 s" s-quote"
 c" c-quote"
 s\" s-backslash-quote"
+." dot-quote"
 
 \ Verify that escaped characters have their own color.
 s\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
