@@ -152,3 +152,7 @@ DECIMAL HEX BASE
 
 [char] ( this-is-not-a-comment
 char ( this-is-not-a-comment
+
+\ ---- Abort
+
+ABORT" this is an abort message"
