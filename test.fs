@@ -39,6 +39,10 @@ s\" mispelt"
 
 dup DUP Dup
 
+\ --- iskeyword
+
+dup-drop \ dup and drop should not be highlighted
+
 \ --- Keywords
 
 \ basic mathematical and logical operators
