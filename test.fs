@@ -22,8 +22,7 @@ s\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
 
 \ --- Spell Checking
 
-( activate spell checking by
-   :set spell spelllang=en_us
+( activate spell checking by ":set spell"
 then, verify that the below "mispelt"
 words are highlighted. )
 s" mispelt"
