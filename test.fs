@@ -147,3 +147,8 @@ BLOCK-INCLUDED BLK
 
 \ numbers
 DECIMAL HEX BASE
+
+\ --- Character Matching
+
+[char] ( this-is-not-a-comment
+char ( this-is-not-a-comment
