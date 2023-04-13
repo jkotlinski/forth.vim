@@ -8,6 +8,7 @@
 ( ...or this... )
 ( ...multi-line comments
   are fine too! )
+.( Somehow, this also counts as a comment. )
 
 \ --- Strings
 
