@@ -13,7 +13,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 setlocal commentstring=\\\ %s
-setlocal comments=b:\\,s:(,mb:\ ,e:)
+setlocal comments=s:(,mb:\ ,e:),b:\\
 setlocal formatoptions-=t formatoptions+=croql
 setlocal iskeyword=33-126,128-255
 
