@@ -181,10 +181,10 @@ syn keyword forthBoolean TRUE FALSE
 
 " numbers
 syn keyword forthMath DECIMAL HEX BASE
-syn match forthInteger '\<-\=[0-9]\+\.\=\>'
-syn match forthInteger '\<#-\=[0-9]\+\.\=\>'
-syn match forthInteger '\<\$-\=\x*\x\+\.\=\>'
-syn match forthInteger '\<%-\=[0-1]*[0-1]\+\.\=\>'
+syn match forthInteger '\<-\=\d\+\.\=\>'
+syn match forthInteger '\<#-\=\d\+\.\=\>'
+syn match forthInteger '\<\$-\=\x\+\.\=\>'
+syn match forthInteger '\<%-\=[01]\+\.\=\>'
 syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
 
 " XXX If you find this overkill you can remove it. this has to come after the
