@@ -63,7 +63,7 @@ F~REL F~ABS F~
 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
 U> U>= D0< D0<= D0<> D0= D0> D0>= D< D<= D<>
 D= D> D>= DU< DU<= DU> DU>= WITHIN ?NEGATE
-?DNEGATE TRUE FALSE
+?DNEGATE
 
 \ various words that take an input and do something with it
 . U. .R U.R
@@ -148,6 +148,9 @@ GET-BLOCK-FID BLOCK-POSITION LIST SCR BLOCK
 BUFER EMPTY-BUFFERS EMPTY-BUFFER UPDATE UPDATED?
 SAVE-BUFFERS SAVE-BUFFER FLUSH THRU +LOAD +THRU
 BLOCK-INCLUDED BLK
+
+\ booleans
+TRUE FALSE
 
 \ numbers
 DECIMAL HEX BASE
