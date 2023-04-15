@@ -190,9 +190,7 @@ syn match forthFloat '\<[+-]\=\d*[.]\=\d*[DdEe][+-]\=\d*\>'
 syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains=forthTodo
 
 " Strings
-syn region forthString matchgroup=forthString start=+s"\s+ end=+"+ end=+$+ contains=@Spell
-syn region forthString matchgroup=forthString start=+c"\s+ end=+"+ end=+$+ contains=@Spell
-syn region forthString matchgroup=forthString start=+\."\s+ end=+"+ end=+$+ contains=@Spell
+syn region forthString matchgroup=forthString start=+\S\+"\s+ end=+"+ end=+$+ contains=@Spell
 syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\\[abeflmnqrtvz"\\]+ contained
