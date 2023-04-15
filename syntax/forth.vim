@@ -54,7 +54,7 @@ syn keyword forthOperators F~REL F~ABS F~
 syn keyword forthOperators 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
 syn keyword forthOperators U> U>= D0< D0<= D0<> D0= D0> D0>= D< D<= D<>
 syn keyword forthOperators D= D> D>= DU< DU<= DU> DU>= WITHIN ?NEGATE
-syn keyword forthOperators ?DNEGATE TRUE FALSE
+syn keyword forthOperators ?DNEGATE
 
 " various words that take an input and do something with it
 syn keyword forthFunction . U. .R U.R
@@ -178,6 +178,9 @@ syn keyword forthBlocks BUFER EMPTY-BUFFERS EMPTY-BUFFER UPDATE UPDATED?
 syn keyword forthBlocks SAVE-BUFFERS SAVE-BUFFER FLUSH THRU +LOAD +THRU
 syn keyword forthBlocks BLOCK-INCLUDED BLK
 
+" booleans
+syn keyword forthBoolean TRUE FALSE
+
 " numbers
 syn keyword forthMath DECIMAL HEX BASE
 syn match forthInteger '\<-\=[0-9]\+.\=\>'
@@ -224,6 +227,7 @@ syn match forthLocals '{ }' " otherwise, at least two spaces between
 syn region forthDeprecated start='locals|' end='|'
 
 " Define the default highlighting.
+hi def link forthBoolean Boolean
 hi def link forthTodo Todo
 hi def link forthOperators Operator
 hi def link forthMath Number
