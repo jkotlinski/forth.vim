@@ -9,6 +9,8 @@
 ( ...multi-line comments
   are fine too! )
 .( Somehow, this also counts as a comment. )
+0 [IF] comment [ENDIF]
+0 [IF] comment [THEN]
 
 \ --- Strings
 
