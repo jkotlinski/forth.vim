@@ -77,7 +77,7 @@ syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ CELL ALIGN ALIGNED FLOATS
 syn keyword forthAdrArith FLOAT+ FLOAT FALIGN FALIGNED SFLOATS SFLOAT+
 syn keyword forthAdrArith SFALIGN SFALIGNED DFLOATS DFLOAT+ DFALIGN DFALIGNED
 syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
-syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT ALLOCATE HERE
+syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT ALLOCATE
 syn keyword forthMemBlks MOVE ERASE CMOVE CMOVE> FILL BLANK UNUSED
 
 " conditionals
@@ -137,13 +137,12 @@ syn match forthDebug "\<\~\~\>"
 syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE C,
 
 " basic character operations
-syn keyword forthCharOps (.) CHAR EXPECT FIND WORD TYPE -TRAILING EMIT KEY
+syn keyword forthCharOps (.) EXPECT FIND WORD TYPE -TRAILING EMIT KEY
 syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[char] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
 syn match forthCharOps '\<char\s\S\s'
 syn match forthCharOps '\<\[char\]\s\S\s'
-syn region forthCharOps start=+."\s+ skip=+\\"+ end=+"+
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
@@ -157,7 +156,6 @@ syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
 syn keyword forthForth SAVE-INPUT SOURCE-ID
-syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
 
 " vocabularies
 syn keyword forthVocs ONLY FORTH ALSO ROOT SEAL VOCS ORDER CONTEXT #VOCS
@@ -181,25 +179,21 @@ syn keyword forthBlocks BLOCK-INCLUDED BLK
 " numbers
 syn keyword forthMath DECIMAL HEX BASE
 syn match forthInteger '\<-\=[0-9]\+.\=\>'
-syn match forthInteger '\<&-\=[0-9]\+.\=\>'
 syn match forthInteger '\<#-\=[0-9]\+.\=\>'
-" recognize hex and binary numbers, the '$' and '%' notation is for gforth
-syn match forthInteger '\<\$\x*\x\+\>' " *1* --- don't mess
-syn match forthInteger '\<\x*\d\x*\>'  " *2* --- this order!
-syn match forthInteger '\<%[0-1]*[0-1]\+\>'
-syn match forthFloat '\<-\=\d*[.]\=\d\+[DdEe]\d\+\>'
-syn match forthFloat '\<-\=\d*[.]\=\d\+[DdEe][-+]\d\+\>'
+syn match forthInteger '\<\$-\=\x*\x\+\>'
+syn match forthInteger '\<%-\=[0-1]*[0-1]\+\>'
+syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
 
 " XXX If you find this overkill you can remove it. this has to come after the
 " highlighting for numbers otherwise it has no effect.
 syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains=forthTodo
 
 " Strings
-syn region forthString start=+\.*"+ end=+"+ end=+$+ contains=@Spell
-" XXX
-syn region forthString start=+s"+ end=+"+ end=+$+ contains=@Spell
-syn region forthString start=+c"+ end=+"+ end=+$+ contains=@Spell
 
+" Words that end with " are assumed to start string parsing.
+" This includes standard words: s" c" ."
+syn region forthString matchgroup=forthString start=+\S\+"\s+ end=+"+ end=+$+ contains=@Spell
+" Matches s\"
 syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\\[abeflmnqrtvz"\\]+ contained
@@ -207,10 +201,11 @@ syn match forthEscape "\\x\x\x" contained
 
 " Comments
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
-syn region forthComment start='\\S\s' end='.*' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\(^\|\s\)\zs(\s' skip='\\)' end=')' contains=@Spell,forthTodo,forthSpaceError
-syn region forthComment start='/\*' end='\*/' contains=@Spell,forthTodo,forthSpaceError
+
+" Abort"
+syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
 
 " Include files
 syn match forthInclude '^INCLUDE\s\+\k\+'
@@ -218,7 +213,8 @@ syn match forthInclude '^REQUIRE\s\+\k\+'
 syn match forthInclude '^FLOAD\s\+'
 syn match forthInclude '^NEEDS\s\+'
 
-" Locals definitions
+" Locals definitions.
+" TODO: update to Forth standard.
 syn region forthLocals start='{\s' start='{$' end='\s}' end='^}'
 syn match forthLocals '{ }' " otherwise, at least two spaces between
 syn region forthDeprecated start='locals|' end='|'
