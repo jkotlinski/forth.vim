@@ -189,7 +189,11 @@ syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
 syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains=forthTodo
 
 " Strings
+
+" Words that end with " are assumed to start string parsing.
+" This includes standard words: s" c" ."
 syn region forthString matchgroup=forthString start=+\S\+"\s+ end=+"+ end=+$+ contains=@Spell
+" Matches s\"
 syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\\[abeflmnqrtvz"\\]+ contained
