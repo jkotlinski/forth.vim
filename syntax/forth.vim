@@ -156,7 +156,6 @@ syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
 syn keyword forthForth SAVE-INPUT SOURCE-ID
-syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
 
 " vocabularies
 syn keyword forthVocs ONLY FORTH ALSO ROOT SEAL VOCS ORDER CONTEXT #VOCS
@@ -200,6 +199,9 @@ syn match forthEscape "\\x\x\x" contained
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\(^\|\s\)\zs(\s' skip='\\)' end=')' contains=@Spell,forthTodo,forthSpaceError
+
+" Abort
+syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
 
 " Include files
 syn match forthInclude '^INCLUDE\s\+\k\+'
