@@ -24,6 +24,9 @@ foo" custom string matching word"
 \ Verify that escaped characters have their own color.
 s\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
 
+\ Verify that escaped characters are case sensitive.
+s\" \A\B\E\F\L\M\N\Q\R\T\V\Z\"\Xff\X00\\"
+
 \ --- Spell Checking
 
 ( activate spell checking by ":set spell"

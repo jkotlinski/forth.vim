@@ -199,8 +199,8 @@ syn region forthString matchgroup=forthString start=+\S\+"\s+ end=+"+ end=+$+ co
 " Matches s\"
 syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
 
-syn match forthEscape +\\[abeflmnqrtvz"\\]+ contained
-syn match forthEscape "\\x\x\x" contained
+syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
+syn match forthEscape "\C\\x\x\x" contained
 
 " Comments
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
