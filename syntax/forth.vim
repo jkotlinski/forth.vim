@@ -78,7 +78,7 @@ syn keyword forthAdrArith FLOAT+ FLOAT FALIGN FALIGNED SFLOATS SFLOAT+
 syn keyword forthAdrArith SFALIGN SFALIGNED DFLOATS DFLOAT+ DFALIGN DFALIGNED
 syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
 syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT ALLOCATE
-syn keyword forthMemBlks MOVE ERASE CMOVE CMOVE> FILL BLANK UNUSED
+syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
 syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
@@ -137,7 +137,7 @@ syn match forthDebug "\<\~\~\>"
 syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE C,
 
 " basic character operations
-syn keyword forthCharOps (.) EXPECT FIND WORD TYPE -TRAILING EMIT KEY
+syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
 syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[char] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
@@ -175,6 +175,10 @@ syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION LIST SCR BLOCK
 syn keyword forthBlocks BUFER EMPTY-BUFFERS EMPTY-BUFFER UPDATE UPDATED?
 syn keyword forthBlocks SAVE-BUFFERS SAVE-BUFFER FLUSH THRU +LOAD +THRU
 syn keyword forthBlocks BLOCK-INCLUDED BLK
+
+" The optional String word set
+syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
+syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
 " booleans
 syn keyword forthBoolean TRUE FALSE
