@@ -1,10 +1,10 @@
 " Vim syntax file
-" Language:    FORTH
-" Current Maintainer:  Johan Kotlinski <kotlinski@gmail.com>
-" Previous Maintainer:  Christian V. J. Br�ssow <cvjb@cvjb.de>
-" Last Change: 2023-01-12
-" Filenames:   *.fs,*.ft
-" URL:	       https://github.com/jkotlinski/forth.vim
+" Language:		Forth
+" Maintainer:		Johan Kotlinski <kotlinski@gmail.com>
+" Previous Maintainer:	Christian V. J. Brüssow <cvjb@cvjb.de>
+" Last Change:		2023 Apr 12
+" Filenames:		*.f,*.fs,*.ft,*.fth,*.4th
+" URL:			https://github.com/jkotlinski/forth.vim
 
 " quit when a syntax file was already loaded
 if exists("b:current_syntax")
@@ -26,7 +26,7 @@ syn keyword forthTodo contained TODO FIXME XXX
 
 " Characters allowed in keywords
 " I don't know if 128-255 are allowed in ANS-FORTH
-setlocal iskeyword=!,@,33-35,%,$,38-64,A-Z,91-96,a-z,123-126,128-255
+syn iskeyword 33-126,128-255
 
 " when wanted, highlight trailing white space
 if exists("forth_space_errors")
