@@ -171,6 +171,9 @@ char ( this-is-not-a-comment
 
 ABORT ABORT" message"
 
+ABORT" message
+not-continued-message
+
 \ --- Numbers
 
 123 #123 -123 #-123

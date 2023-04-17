@@ -212,7 +212,7 @@ syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\(^\|\s\)\zs(\s' skip='\\)' end=')' contains=@Spell,forthTodo,forthSpaceError
 
 " Abort"
-syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
+syn region forthForth start=+ABORT"\s+ end=+"+ end=+$+
 
 " Include files
 syn match forthInclude '^INCLUDE\s\+\k\+'
