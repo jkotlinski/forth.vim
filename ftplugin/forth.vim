@@ -14,10 +14,9 @@ set cpo&vim
 
 setlocal commentstring=\\\ %s
 setlocal comments=s:(,mb:\ ,e:),b:\\
-setlocal formatoptions-=t formatoptions+=croql
 setlocal iskeyword=33-126,128-255
 
-let b:undo_ftplugin = "setl cms< com< fo< isk<"
+let b:undo_ftplugin = "setl cms< com< isk<"
 
 if (has("gui_win32") || has("gui_gtk")) && !exists("b:browsefilter")
   let b:browsefilter = "Forth Source Files (*.f *.fs *.ft *.fth *.4th)\t*.f;*.fs;*.ft;*.fth;*.4th\n" ..
