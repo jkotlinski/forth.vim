@@ -209,7 +209,7 @@ syn match forthEscape "\C\\x\x\x" contained
 " Comments
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
-syn region forthComment start='\(^\|\s\)\zs(\s' skip='\\)' end=')' contains=@Spell,forthTodo,forthSpaceError
+syn region forthComment start='\(^\|\s\)\zs(\s' end=')' contains=@Spell,forthTodo,forthSpaceError
 
 " Abort"
 syn region forthForth start=+ABORT"\s+ skip=+\\"+ end=+"+
