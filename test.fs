@@ -11,6 +11,8 @@
 .( Somehow, this also counts as a comment. )
 0 [IF] comment [ENDIF]
 0 [IF] comment [THEN]
+FALSE [IF] comment [ENDIF]
+FALSE [IF] comment [THEN]
 
 \ --- Strings
 
