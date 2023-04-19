@@ -181,7 +181,7 @@ syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
 syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
 " booleans
-syn keyword forthBoolean TRUE FALSE
+syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
 
 " numbers
 syn keyword forthMath DECIMAL HEX BASE
@@ -190,10 +190,6 @@ syn match forthInteger '\<#-\=\d\+\.\=\>'
 syn match forthInteger '\<\$-\=\x\+\.\=\>'
 syn match forthInteger '\<%-\=[01]\+\.\=\>'
 syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
-
-" XXX If you find this overkill you can remove it. this has to come after the
-" highlighting for numbers otherwise it has no effect.
-syn region forthComment start='0 \[if\]' end='\[endif\]' end='\[then\]' contains=forthTodo
 
 " Strings
 
@@ -207,6 +203,11 @@ syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
 
 " Comments
+
+" XXX If you find this overkill you can remove it. This has to come after the
+" highlighting for numbers and booleans otherwise it has no effect.
+syn region forthComment start='\<\%(0\|false\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
+
 syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\(^\|\s\)\zs(\s' end=')' contains=@Spell,forthTodo,forthSpaceError
