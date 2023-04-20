@@ -103,31 +103,30 @@ syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
 syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION ] LASTXT
 syn keyword forthDefine COMP' POSTPONE, FIND-NAME NAME>INT NAME?INT NAME>COMP
 syn keyword forthDefine NAME>STRING STATE C; CVARIABLE BUFFER: MARKER
-syn keyword forthDefine , 2, F, C, COMPILE,
-syn match forthDefine "\[DEFINED]"
-syn match forthDefine "\[UNDEFINED]"
-syn match forthDefine "\[IF]"
-syn match forthDefine "\[IFDEF]"
-syn match forthDefine "\[IFUNDEF]"
-syn match forthDefine "\[THEN]"
-syn match forthDefine "\[ENDIF]"
-syn match forthDefine "\[ELSE]"
-syn match forthDefine "\[?DO]"
-syn match forthDefine "\[DO]"
-syn match forthDefine "\[LOOP]"
-syn match forthDefine "\[+LOOP]"
-syn match forthDefine "\[NEXT]"
-syn match forthDefine "\[BEGIN]"
-syn match forthDefine "\[UNTIL]"
-syn match forthDefine "\[AGAIN]"
-syn match forthDefine "\[WHILE]"
-syn match forthDefine "\[REPEAT]"
-syn match forthDefine "\[COMP']"
-syn match forthDefine "'"
+syn keyword forthDefine , 2, F, C, COMPILE, '
+syn match forthDefine "\<\[DEFINED]\>"
+syn match forthDefine "\<\[UNDEFINED]\>"
+syn match forthDefine "\<\[IF]\>"
+syn match forthDefine "\<\[IFDEF]\>"
+syn match forthDefine "\<\[IFUNDEF]\>"
+syn match forthDefine "\<\[THEN]\>"
+syn match forthDefine "\<\[ENDIF]\>"
+syn match forthDefine "\<\[ELSE]\>"
+syn match forthDefine "\<\[?DO]\>"
+syn match forthDefine "\<\[DO]\>"
+syn match forthDefine "\<\[LOOP]\>"
+syn match forthDefine "\<\[+LOOP]\>"
+syn match forthDefine "\<\[NEXT]\>"
+syn match forthDefine "\<\[BEGIN]\>"
+syn match forthDefine "\<\[UNTIL]\>"
+syn match forthDefine "\<\[AGAIN]\>"
+syn match forthDefine "\<\[WHILE]\>"
+syn match forthDefine "\<\[REPEAT]\>"
+syn match forthDefine "\<\[COMP']\>"
 syn match forthDefine '\<\[\>'
-syn match forthDefine "\[']"
-syn match forthDefine '\[COMPILE]'
-syn match forthDefine '\[CHAR]'
+syn match forthDefine "\<\[']\>"
+syn match forthDefine '\<\[COMPILE]\>'
+syn match forthDefine '\<\[CHAR]\>'
 
 " debugging
 syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
@@ -195,9 +194,9 @@ syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
 
 " Words that end with " are assumed to start string parsing.
 " This includes standard words: s" c" ."
-syn region forthString matchgroup=forthString start=+\S\+"\s+ end=+"+ end=+$+ contains=@Spell
+syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"\>+ end=+$+ contains=@Spell
 " Matches s\"
-syn region forthString matchgroup=forthString start=+s\\"+ end=+"+ end=+$+ contains=@Spell,forthEscape
+syn region forthString matchgroup=forthString start=+\<s\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
@@ -208,12 +207,12 @@ syn match forthEscape "\C\\x\x\x" contained
 " highlighting for numbers and booleans otherwise it has no effect.
 syn region forthComment start='\<\%(0\|false\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
 
-syn match forthComment '\\\%(\s.*\)\=$' contains=@Spell,forthTodo,forthSpaceError
-syn match forthComment '\.(\s[^)]*)' contains=@Spell,forthTodo,forthSpaceError
-syn region forthComment start='\(^\|\s\)\zs(\s' end=')' contains=@Spell,forthTodo,forthSpaceError
+syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
+syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
+syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
 
 " Abort"
-syn region forthForth start=+ABORT"\s+ end=+"+ end=+$+
+syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
 
 " Include files
 syn match forthInclude '^INCLUDE\s\+\k\+'
@@ -223,9 +222,9 @@ syn match forthInclude '^NEEDS\s\+'
 
 " Locals definitions.
 " TODO: update to Forth standard.
-syn region forthLocals start='{\s' start='{$' end='\s}' end='^}'
-syn match forthLocals '{ }' " otherwise, at least two spaces between
-syn region forthDeprecated start='locals|' end='|'
+syn region forthLocals start='\<{\s' start='\<{$' end='\s}\>' end='^}\>'
+syn match forthLocals '\<{ }\>' " otherwise, at least two spaces between
+syn region forthDeprecated start='\<locals|' end='|\>'
 
 " Define the default highlighting.
 hi def link forthBoolean Boolean
