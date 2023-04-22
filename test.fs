@@ -9,10 +9,62 @@
 ( ...multi-line comments
   are fine too! )
 .( Somehow, this also counts as a comment. )
-0 [IF] comment [ENDIF]
-0 [IF] comment [THEN]
-FALSE [IF] comment [ENDIF]
-FALSE [IF] comment [THEN]
+
+\ conditional compilation, "discard-it" should be highlighted as a comment
+0 [IF] discard-it [ENDIF]
+0 [IF] discard-it [ELSE] compile-it [THEN]
+FALSE [IF] discard-it [ELSE] compile-it [ENDIF]
+FALSE [IF] discard-it [THEN]
+1 [IF] compile-it [ENDIF]
+1 [IF] compile-it [ELSE] discard-it [THEN]
+TRUE [IF] compile-it [ELSE] discard-it [ENDIF]
+TRUE [IF] compile-it [THEN]
+
+0 [if]
+  discard-it
+[else]
+  compile-it
+  0 [if]
+    discard-it
+  [else]
+    compile-it
+    1 [if]
+      compile-it
+      0 [if]
+        discard-it
+	1 [if]
+	  compile-it
+	[else]
+	  discard-it
+	[then]
+      [else]
+        compile-it
+	0 [if]
+	  discard-it
+	[else]
+	  compile-it
+	[then]
+      [then]
+    [else]
+      discard-it
+      1 [if]
+	compile-it
+	0 [if]
+	  discard-it
+	[else]
+	  compile-it
+	[then]
+      [else]
+	discard-it
+	0 [if]
+	  discard-it
+	[else]
+	  compile-it
+	[then]
+      [then]
+    [then]
+  [then]
+[then]
 
 \ --- Strings
 

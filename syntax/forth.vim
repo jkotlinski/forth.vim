@@ -203,9 +203,31 @@ syn match forthEscape "\C\\x\x\x" contained
 
 " Comments
 
-" XXX If you find this overkill you can remove it. This has to come after the
-" highlighting for numbers and booleans otherwise it has no effect.
-syn region forthComment start='\<\%(0\|false\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
+" conditional compilation
+if get(g:, "forth_bracket-if_comments", 1)
+    syn match forthBoolean "\<FALSE\>" nextgroup=forthBracketIfComment skipwhite
+    syn match forthInteger "\<0\>"     nextgroup=forthBracketIfComment skipwhite
+
+    syn region forthBracketIfComment matchgroup=forthDefine start="\<\[IF]\>"   end="\<\[ENDIF]\>"    end="\<\[THEN]\>"    contains=forthTodo,forthNestedBracketIf contained
+    syn region forthBracketElse      matchgroup=forthDefine start="\<\[ELSE]\>" end="\ze\<\[ENDIF]\>" end="\ze\<\[THEN]\>" contains=TOP contained containedin=forthBracketIfComment
+
+    syn match forthBoolean "\<TRUE\>" nextgroup=forthBracketIf skipwhite
+    syn match forthInteger "\<1\>"    nextgroup=forthBracketIf skipwhite
+
+    syn region forthBracketIf          matchgroup=forthDefine start="\<\[IF]\>"   end="\<\[ENDIF]\>"    end="\<\[THEN]\>"    contains=TOP contained
+    syn region forthBracketElseComment matchgroup=forthDefine start="\<\[ELSE]\>" end="\ze\<\[ENDIF]\>" end="\ze\<\[THEN]\>" contains=forthTodo,forthNestedBracketIf contained containedin=forthBracketIf
+
+    " used to skip nested bracket-if in discarded regions
+    syn region forthNestedBracketIf   start="\<\[IF]\>"   end="\<\[THEN]\>"     end="\<\[ENDIF]\>"   contains=forthNestedBracketIf contained
+    syn region forthNestedBracketElse start="\<\[ELSE]\>" end="\ze\<\[ENDIF]\>" end="\ze\<\[THEN]\>" contains=forthNestedBracketIf contained
+
+    hi def link forthBracketIfComment	forthComment
+    hi def link forthBracketElseComment	forthComment
+    hi def link forthNestedBracketIf	forthComment
+    hi def link forthNestedBracketElse	forthComment
+
+    syn sync minlines=500
+endif
 
 syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
