@@ -215,8 +215,8 @@ syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthS
 syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
 
 " Include files
-syn match forthInclude '^INCLUDE\s\+\k\+'
-syn match forthInclude '^REQUIRE\s\+\k\+'
+syn match forthInclude '\<INCLUDE\s\+\k\+'
+syn match forthInclude '\<REQUIRE\s\+\k\+'
 syn match forthInclude '^FLOAD\s\+'
 syn match forthInclude '^NEEDS\s\+'
 
