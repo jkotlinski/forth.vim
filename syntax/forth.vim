@@ -169,15 +169,20 @@ syn keyword forthFileWords FLUSH-FILE FILE-STATUS FILE-POSITION
 syn keyword forthFileWords REPOSITION-FILE FILE-SIZE RESIZE-FILE
 syn keyword forthFileWords SLURP-FILE SLURP-FID STDIN STDOUT STDERR
 syn keyword forthFileWords INCLUDE-FILE INCLUDED REQUIRED
-syn keyword forthBlocks OPEN-BLOCKS USE LOAD --> BLOCK-OFFSET
-syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION LIST SCR BLOCK
-syn keyword forthBlocks BUFER EMPTY-BUFFERS EMPTY-BUFFER UPDATE UPDATED?
-syn keyword forthBlocks SAVE-BUFFERS SAVE-BUFFER FLUSH THRU +LOAD +THRU
-syn keyword forthBlocks BLOCK-INCLUDED BLK
 
 " The optional String word set
 syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
 syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
+
+" The optional Block word set
+syn keyword forthBlocks BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
+syn keyword forthBlocks EMPTY-BUFFERS LIST SCR THRU
+
+" Non-standard Block words
+syn keyword forthBlocks OPEN-BLOCKS USE --> BLOCK-OFFSET
+syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION
+syn keyword forthBlocks BUFER EMPTY-BUFFER UPDATED?
+syn keyword forthBlocks SAVE-BUFFER +LOAD +THRU BLOCK-INCLUDED
 
 " booleans
 syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
