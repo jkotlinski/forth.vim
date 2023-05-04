@@ -1,7 +1,7 @@
 " Vim filetype plugin
 " Language:	Forth
 " Maintainer:	Johan Kotlinski <kotlinski@gmail.com>
-" Last Change:	2023 May 02
+" Last Change:	2023 May 05
 " URL:		https://github.com/jkotlinski/forth.vim
 
 if exists("b:did_ftplugin")
@@ -19,6 +19,7 @@ setlocal iskeyword=33-126,128-255
 let b:undo_ftplugin = "setl cms< com< isk<"
 
 if exists("loaded_matchit") && !exists("b:match_words")
+  let b:match_ignorecase = 1
   let b:match_words = '\<\:\%(noname\)\=\>:\<exit\>:\<;\>,' ..
 	\	      '\<if\>:\<else\>:\<then\>,' ..
 	\	      '\[if]:\[else]:\[then],' ..
