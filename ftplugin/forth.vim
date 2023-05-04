@@ -16,7 +16,28 @@ setlocal commentstring=\\\ %s
 setlocal comments=s:(,mb:\ ,e:),b:\\
 setlocal iskeyword=33-126,128-255
 
-let b:undo_ftplugin = "setl cms< com< isk<"
+let include_patterns =<< trim EOL
+
+  \<\%(INCLUDE\|REQUIRE\)\>\s\+\zs\k\+\ze
+  \<S"\s\+\zs[^"]*\ze"\s\+\%(INCLUDED\|REQUIRED\)\>
+EOL
+let &l:include = $'\c{ include_patterns[1:]->join('\|') }'
+
+let define_patterns =<< trim EOL
+  :
+  [2F]\=CONSTANT
+  [2F]\=VALUE
+  [2F]\=VARIABLE
+  BEGIN-STRUCTURE
+  BUFFER:
+  CODE
+  CREATE
+  MARKER
+  SYNONYM
+EOL
+let &l:define = $'\c\<\%({ define_patterns->join('\|') }\)'
+
+let b:undo_ftplugin = "setl cms< com< def< inc< isk<"
 
 if exists("loaded_matchit") && !exists("b:match_words")
   let b:match_ignorecase = 1
