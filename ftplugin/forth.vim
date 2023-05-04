@@ -37,5 +37,21 @@ if (has("gui_win32") || has("gui_gtk")) && !exists("b:browsefilter")
   let b:undo_ftplugin ..= " | unlet! b:browsefilter"
 endif
 
+if !exists("no_plugin_maps") && !exists("no_forth_maps")
+  let colon = '\<:\%(noname\)\=\>'
+  let semicolon = '\<;\>'
+  let skip = 'synIDattr(synID(line("."), col("."), 1), "name") =~? "comment\\|string"'
+
+  for mode in ["n", "o", "x"]
+    exe $'{mode}noremap <silent><buffer> ]] <ScriptCmd>call search(colon, "Ws", 0, 0, skip)<CR>'
+    exe $'{mode}noremap <silent><buffer> [[ <ScriptCmd>call search(colon, "bWs", 0, 0, skip)<CR>'
+    exe $'{mode}noremap <silent><buffer> ][ <ScriptCmd>call search(semicolon, "Ws", 0, 0, skip)<CR>'
+    exe $'{mode}noremap <silent><buffer> [] <ScriptCmd>call search(semicolon, "bWs", 0, 0, skip)<CR>'
+    for map_ in ["]]", "[[", "][", "[]"]
+      let b:undo_ftplugin ..= $" | silent! execute '{mode}unmap <buffer> {map_}'"
+    endfor
+  endfor
+endif
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
