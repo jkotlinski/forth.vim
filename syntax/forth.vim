@@ -180,8 +180,7 @@ syn keyword forthBlocks EMPTY-BUFFERS LIST SCR THRU
 
 " Non-standard Block words
 syn keyword forthBlocks OPEN-BLOCKS USE --> BLOCK-OFFSET
-syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION
-syn keyword forthBlocks BUFER EMPTY-BUFFER UPDATED?
+syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION EMPTY-BUFFER UPDATED?
 syn keyword forthBlocks SAVE-BUFFER +LOAD +THRU BLOCK-INCLUDED
 
 " booleans
