@@ -1,7 +1,7 @@
 " Vim filetype plugin
 " Language:	Forth
 " Maintainer:	Johan Kotlinski <kotlinski@gmail.com>
-" Last Change:	2023 May 02
+" Last Change:	2023 May 05
 " URL:		https://github.com/jkotlinski/forth.vim
 
 if exists("b:did_ftplugin")
@@ -19,15 +19,16 @@ setlocal iskeyword=33-126,128-255
 let b:undo_ftplugin = "setl cms< com< isk<"
 
 if exists("loaded_matchit") && !exists("b:match_words")
-  let b:match_words = '\<\:\%(noname\)\=\>:\<exit\>:\<;\>,' ..
-	\	      '\<if\>:\<else\>:\<then\>,' ..
-	\	      '\[if]:\[else]:\[then],' ..
-	\	      '\<?\=do\>:\<leave\>:\<+\=loop\>,' ..
-	\	      '\<case\>:\<endcase\>,' ..
-	\	      '\<of\>:\<endof\>,' ..
-	\	      '\<begin\>:\<while\>:\<\%(again\|repeat\|until\)\>,' ..
-	\	      '\<code\>:\<end-code\>,' ..
-	\	      '\<begin-structure\>:\<end-structure\>'
+  let b:match_ignorecase = 1
+  let b:match_words = '\<\:\%(NONAME\)\=\>:\<EXIT\>:\<;\>,' ..
+	\	      '\<IF\>:\<ELSE\>:\<THEN\>,' ..
+	\	      '\[IF]:\[ELSE]:\[THEN],' ..
+	\	      '\<?\=DO\>:\<LEAVE\>:\<+\=LOOP\>,' ..
+	\	      '\<CASE\>:\<ENDCASE\>,' ..
+	\	      '\<OF\>:\<ENDOF\>,' ..
+	\	      '\<BEGIN\>:\<WHILE\>:\<\%(AGAIN\|REPEAT\|UNTIL\)\>,' ..
+	\	      '\<CODE\>:\<END-CODE\>,' ..
+	\	      '\<BEGIN-STRUCTURE\>:\<END-STRUCTURE\>'
   let b:undo_ftplugin ..= "| unlet! b:match_ignorecase b:match_words"
 endif
 
