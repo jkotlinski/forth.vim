@@ -17,28 +17,28 @@ FALSE [IF] comment [THEN]
 \ --- Strings
 
 \ Verify that strings have their own color.
-s" s-quote"
-c" c-quote"
-s\" s-backslash-quote"
+S" s-quote"
+C" c-quote"
+S\" s-backslash-quote"
 ." dot-quote"
-foo" custom string matching word"
+FOO" custom string matching word"
 
 \ Verify that escaped characters have their own color.
-s\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
+S\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
 
 \ Upper-case characters cannot be escaped.
-s\" \A\B\E\F\L\M\N\Q\R\T\V\Z\Xff\X00"
+S\" \A\B\E\F\L\M\N\Q\R\T\V\Z\Xff\X00"
 
 \ --- Spell Checking
 
 ( activate spell checking by ":set spell"
 then, verify that the below "mispelt"
 words are highlighted. )
-s" mispelt"
-c" mispelt"
+S" mispelt"
+C" mispelt"
 ( mispelt )
 \ mispelt
-s\" mispelt"
+S\" mispelt"
 
 \ --- To Do
 
@@ -102,7 +102,7 @@ BEGIN WHILE REPEAT UNTIL AGAIN
 UNLOOP LEAVE ?LEAVE EXIT DONE FOR NEXT RECURSE
 
 \ new words
-; ;M ;m ;class ;object
+; ;M ;CLASS ;OBJECT
 CONSTANT 2CONSTANT FCONSTANT VARIABLE 2VARIABLE
 FVARIABLE CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
 COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
@@ -170,8 +170,8 @@ DECIMAL HEX BASE
 
 \ --- Character Matching
 
-[char] ( this-is-not-a-comment
-char ( this-is-not-a-comment
+[CHAR] ( this-is-not-a-comment
+CHAR ( this-is-not-a-comment
 
 \ --- Abort
 
@@ -194,5 +194,5 @@ $123. $cafe. $-123. $-cafe.
 
 \ --- Includes
 
-include filename
-require filename
+INCLUDE filename
+REQUIRE filename

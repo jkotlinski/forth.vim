@@ -90,12 +90,12 @@ syn keyword forthLoop ?DO LOOP I J K +DO U+DO -DO U-DO DO +LOOP -LOOP
 syn keyword forthLoop UNLOOP LEAVE ?LEAVE EXIT DONE FOR NEXT RECURSE
 
 " new words
-syn match forthClassDef '\<:class\s*[^ \t]\+\>'
-syn match forthObjectDef '\<:object\s*[^ \t]\+\>'
-syn match forthColonDef '\<:m\?\s*[^ \t]\+\>'
-syn keyword forthEndOfColonDef ; ;M ;m
-syn keyword forthEndOfClassDef ;class
-syn keyword forthEndOfObjectDef ;object
+syn match forthClassDef '\<:CLASS\s*[^ \t]\+\>'
+syn match forthObjectDef '\<:OBJECT\s*[^ \t]\+\>'
+syn match forthColonDef '\<:M\?\s*[^ \t]\+\>'
+syn keyword forthEndOfColonDef ; ;M
+syn keyword forthEndOfClassDef ;CLASS
+syn keyword forthEndOfObjectDef ;OBJECT
 syn keyword forthDefine CONSTANT 2CONSTANT FCONSTANT VARIABLE 2VARIABLE
 syn keyword forthDefine FVARIABLE CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
 syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
@@ -138,10 +138,10 @@ syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE C,
 " basic character operations
 syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
 syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
-" recognize 'char (' or '[char] (' correctly, so it doesn't
+" recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
-syn match forthCharOps '\<char\s\S\s'
-syn match forthCharOps '\<\[char\]\s\S\s'
+syn match forthCharOps '\<CHAR\s\S\s'
+syn match forthCharOps '\<\[CHAR]\s\S\s'
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
@@ -197,10 +197,10 @@ syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
 " Strings
 
 " Words that end with " are assumed to start string parsing.
-" This includes standard words: s" c" ."
+" This includes standard words: S" C" ."
 syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"\>+ end=+$+ contains=@Spell
 " Matches s\"
-syn region forthString matchgroup=forthString start=+\<s\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
+syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
@@ -209,7 +209,7 @@ syn match forthEscape "\C\\x\x\x" contained
 
 " XXX If you find this overkill you can remove it. This has to come after the
 " highlighting for numbers and booleans otherwise it has no effect.
-syn region forthComment start='\<\%(0\|false\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
+syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
 
 syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
@@ -228,7 +228,7 @@ syn match forthInclude '^NEEDS\s\+'
 " TODO: update to Forth standard.
 syn region forthLocals start='\<{\s' start='\<{$' end='\s}\>' end='^}\>'
 syn match forthLocals '\<{ }\>' " otherwise, at least two spaces between
-syn region forthDeprecated start='\<locals|' end='|\>'
+syn region forthDeprecated start='\<LOCALS|' end='|\>'
 
 " Define the default highlighting.
 hi def link forthBoolean Boolean
