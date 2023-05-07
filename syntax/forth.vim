@@ -141,7 +141,7 @@ syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
 syn match forthCharOps '\<CHAR\s\S\s'
-syn match forthCharOps '\<\[CHAR\]\s\S\s'
+syn match forthCharOps '\<\[CHAR]\s\S\s'
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
