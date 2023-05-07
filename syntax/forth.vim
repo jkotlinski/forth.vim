@@ -126,7 +126,6 @@ syn match forthDefine "\<\[COMP']\>"
 syn match forthDefine '\<\[\>'
 syn match forthDefine "\<\[']\>"
 syn match forthDefine '\<\[COMPILE]\>'
-syn match forthDefine '\<\[CHAR]\>'
 
 " debugging
 syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
