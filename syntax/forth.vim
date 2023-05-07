@@ -98,12 +98,13 @@ syn keyword forthEndOfClassDef ;CLASS
 syn keyword forthEndOfObjectDef ;OBJECT
 syn keyword forthDefine CONSTANT 2CONSTANT FCONSTANT VARIABLE 2VARIABLE
 syn keyword forthDefine FVARIABLE CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
-syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
+syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET EXECUTE
 syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
 syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION ] LASTXT
 syn keyword forthDefine COMP' POSTPONE, FIND-NAME NAME>INT NAME?INT NAME>COMP
 syn keyword forthDefine NAME>STRING STATE C; CVARIABLE BUFFER: MARKER
 syn keyword forthDefine , 2, F, C, COMPILE, '
+syn keyword forthDefine POSTPONE nextgroup=forthName skipwhite
 syn match forthDefine "\<\[DEFINED]\>"
 syn match forthDefine "\<\[UNDEFINED]\>"
 syn match forthDefine "\<\[IF]\>"
@@ -124,8 +125,8 @@ syn match forthDefine "\<\[WHILE]\>"
 syn match forthDefine "\<\[REPEAT]\>"
 syn match forthDefine "\<\[COMP']\>"
 syn match forthDefine '\<\[\>'
-syn match forthDefine "\<\[']\>"
-syn match forthDefine '\<\[COMPILE]\>'
+syn match forthDefine "\<\[']\>" nextgroup=forthName skipwhite
+syn match forthDefine "\<\[COMPILE]\>" nextgroup=forthName skipwhite
 
 " debugging
 syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
@@ -139,8 +140,8 @@ syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
 syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
-syn match forthCharOps '\<CHAR\s\S\s'
-syn match forthCharOps '\<\[CHAR]\s\S\s'
+syn keyword forthCharOps CHAR nextgroup=forthName skipwhite
+syn match forthCharOps "\<\[CHAR]\>" nextgroup=forthName skipwhite
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
@@ -228,6 +229,8 @@ syn match forthInclude '^NEEDS\s\+'
 syn region forthLocals start='\<{\s' start='\<{$' end='\s}\>' end='^}\>'
 syn match forthLocals '\<{ }\>' " otherwise, at least two spaces between
 syn region forthDeprecated start='\<LOCALS|' end='|\>'
+
+syn match forthName "\<\k\+\>" contained
 
 " Define the default highlighting.
 hi def link forthBoolean Boolean
