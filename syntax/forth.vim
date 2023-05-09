@@ -82,7 +82,7 @@ syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
 syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD CS-PICK CS-ROLL CATCH THROW WITHIN
+syn keyword forthCond ?DUP-0=-IF AHEAD CATCH THROW WITHIN
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
@@ -102,26 +102,8 @@ syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
 syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
 syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION ] LASTXT
 syn keyword forthDefine COMP' POSTPONE, FIND-NAME NAME>INT NAME?INT NAME>COMP
-syn keyword forthDefine NAME>STRING STATE C; CVARIABLE BUFFER: MARKER
+syn keyword forthDefine STATE C; CVARIABLE BUFFER: MARKER
 syn keyword forthDefine , 2, F, C, COMPILE, '
-syn match forthDefine "\<\[DEFINED]\>"
-syn match forthDefine "\<\[UNDEFINED]\>"
-syn match forthDefine "\<\[IF]\>"
-syn match forthDefine "\<\[IFDEF]\>"
-syn match forthDefine "\<\[IFUNDEF]\>"
-syn match forthDefine "\<\[THEN]\>"
-syn match forthDefine "\<\[ENDIF]\>"
-syn match forthDefine "\<\[ELSE]\>"
-syn match forthDefine "\<\[?DO]\>"
-syn match forthDefine "\<\[DO]\>"
-syn match forthDefine "\<\[LOOP]\>"
-syn match forthDefine "\<\[+LOOP]\>"
-syn match forthDefine "\<\[NEXT]\>"
-syn match forthDefine "\<\[BEGIN]\>"
-syn match forthDefine "\<\[UNTIL]\>"
-syn match forthDefine "\<\[AGAIN]\>"
-syn match forthDefine "\<\[WHILE]\>"
-syn match forthDefine "\<\[REPEAT]\>"
 syn match forthDefine "\<\[COMP']\>"
 syn match forthDefine '\<\[\>'
 syn match forthDefine "\<\[']\>"
@@ -130,9 +112,6 @@ syn match forthDefine '\<\[COMPILE]\>'
 " debugging
 syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
 syn match forthDebug "\<\~\~\>"
-
-" Assembler
-syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE C,
 
 " basic character operations
 syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
@@ -148,8 +127,8 @@ syn keyword forthConversion D>S DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 syn keyword forthConversion F>S S>F HOLDS
 
 " interpreter, wordbook, compiler
-syn keyword forthForth (LOCAL) BYE COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
-syn keyword forthForth PAD WORDS VIEW VIEW> N>LINK NAME> LINK> L>NAME FORGET
+syn keyword forthForth (LOCAL) COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
+syn keyword forthForth PAD VIEW VIEW> N>LINK NAME> LINK> L>NAME
 syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
@@ -181,6 +160,41 @@ syn keyword forthBlocks EMPTY-BUFFERS LIST SCR THRU
 syn keyword forthBlocks OPEN-BLOCKS USE --> BLOCK-OFFSET
 syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION EMPTY-BUFFER UPDATED?
 syn keyword forthBlocks SAVE-BUFFER +LOAD +THRU BLOCK-INCLUDED
+
+" The optional Programming-Tools wordset
+syn match forthDefine "\<\[DEFINED]\>"
+syn match forthDefine "\<\[ELSE]\>"
+syn match forthDefine "\<\[IF]\>"
+syn match forthDefine "\<\[THEN]\>"
+syn match forthDefine "\<\[UNDEFINED]\>"
+syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE
+syn keyword forthCond AHEAD CS-PICK CS-ROLL
+syn keyword forthDebug .S ? DUMP SEE WORDS
+syn keyword forthDefine NAME>COMPILE NAME>INTERPRET NAME>STRING SYNONYM
+syn keyword forthDefine TRAVERSE-WORDLIST
+syn keyword forthForth BYE FORGET
+syn keyword forthStack NR> N>R
+syn keyword forthVocs EDITOR
+
+" Non-standard Programming-Tools words
+syn keyword forthAssembler FLUSH-ICACHE
+syn match forthDefine "\<\[IFDEF]\>"
+syn match forthDefine "\<\[IFUNDEF]\>"
+syn match forthDefine "\<\[ENDIF]\>"
+syn match forthDefine "\<\[?DO]\>"
+syn match forthDefine "\<\[DO]\>"
+syn match forthDefine "\<\[LOOP]\>"
+syn match forthDefine "\<\[+LOOP]\>"
+syn match forthDefine "\<\[NEXT]\>"
+syn match forthDefine "\<\[BEGIN]\>"
+syn match forthDefine "\<\[UNTIL]\>"
+syn match forthDefine "\<\[AGAIN]\>"
+syn match forthDefine "\<\[WHILE]\>"
+syn match forthDefine "\<\[REPEAT]\>"
+
+" The optional String word set
+syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
+syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
 " booleans
 syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
