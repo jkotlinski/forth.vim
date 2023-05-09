@@ -154,13 +154,20 @@ BUFER EMPTY-BUFFERS EMPTY-BUFFER UPDATE UPDATED?
 SAVE-BUFFERS SAVE-BUFFER FLUSH THRU +LOAD +THRU
 BLOCK-INCLUDED BLK
 
-\ The optional String word set
--TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
-SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
-
 \ The optional Blocks word set
 BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
 EMPTY-BUFFERS LIST REFILL SCR THRU
+
+\ The optional Exception word set
+ABORT
+ABORT" message"
+ABORT" message
+not-continued-message
+CATCH THROW
+
+\ The optional String word set
+-TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
+SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
 \ booleans
 TRUE FALSE
@@ -172,13 +179,6 @@ DECIMAL HEX BASE
 
 [CHAR] ( this-is-not-a-comment
 CHAR ( this-is-not-a-comment
-
-\ --- Abort
-
-ABORT ABORT" message"
-
-ABORT" message
-not-continued-message
 
 \ --- Numbers
 

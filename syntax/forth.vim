@@ -82,7 +82,7 @@ syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
 syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD CS-PICK CS-ROLL CATCH THROW WITHIN
+syn keyword forthCond ?DUP-0=-IF AHEAD CS-PICK CS-ROLL WITHIN
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
@@ -148,7 +148,7 @@ syn keyword forthConversion D>S DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 syn keyword forthConversion F>S S>F HOLDS
 
 " interpreter, wordbook, compiler
-syn keyword forthForth (LOCAL) BYE COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
+syn keyword forthForth (LOCAL) BYE COLD >BODY >NEXT >LINK CFA >VIEW HERE
 syn keyword forthForth PAD WORDS VIEW VIEW> N>LINK NAME> LINK> L>NAME FORGET
 syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
@@ -182,8 +182,10 @@ syn keyword forthBlocks OPEN-BLOCKS USE --> BLOCK-OFFSET
 syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION EMPTY-BUFFER UPDATED?
 syn keyword forthBlocks SAVE-BUFFER +LOAD +THRU BLOCK-INCLUDED
 
-" booleans
-syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
+" The optional Exception word set
+syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
+syn keyword forthForth ABORT
+syn keyword forthCond CATCH THROW
 
 " numbers
 syn keyword forthMath DECIMAL HEX BASE
@@ -213,9 +215,6 @@ syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\
 syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
-
-" Abort"
-syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
 
 " Include files
 syn match forthInclude '\<INCLUDE\s\+\k\+'
