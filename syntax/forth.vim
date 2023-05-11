@@ -44,16 +44,14 @@ endif
 syn keyword forthOperators + - * / MOD /MOD NEGATE ABS MIN MAX
 syn keyword forthOperators AND OR XOR NOT LSHIFT RSHIFT INVERT 2* 2/ 1+
 syn keyword forthOperators 1- 2+ 2- 8* UNDER+
-syn keyword forthOperators M+ */ */MOD M* UM* M*/ UM/MOD FM/MOD SM/REM
-syn keyword forthOperators D+ D- DNEGATE DABS DMIN DMAX D2* D2/
+syn keyword forthOperators */ */MOD M* UM* UM/MOD FM/MOD SM/REM
 syn keyword forthOperators F+ F- F* F/ FNEGATE FABS FMAX FMIN FLOOR FROUND
 syn keyword forthOperators F** FSQRT FEXP FEXPM1 FLN FLNP1 FLOG FALOG FSIN
 syn keyword forthOperators FCOS FSINCOS FTAN FASIN FACOS FATAN FATAN2 FSINH
 syn keyword forthOperators FCOSH FTANH FASINH FACOSH FATANH F2* F2/ 1/F
 syn keyword forthOperators F~REL F~ABS F~
 syn keyword forthOperators 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
-syn keyword forthOperators U> U>= D0< D0<= D0<> D0= D0> D0>= D< D<= D<>
-syn keyword forthOperators D= D> D>= DU< DU<= DU> DU>= WITHIN ?NEGATE
+syn keyword forthOperators U> U>= WITHIN ?NEGATE
 syn keyword forthOperators ?DNEGATE
 
 " various words that take an input and do something with it
@@ -61,10 +59,10 @@ syn keyword forthFunction . U. .R U.R
 
 " stack manipulations
 syn keyword forthStack DROP NIP DUP OVER TUCK SWAP ROT -ROT ?DUP PICK ROLL
-syn keyword forthStack 2DROP 2NIP 2DUP 2OVER 2TUCK 2SWAP 2ROT 2-ROT
+syn keyword forthStack 2DROP 2DUP 2OVER 2SWAP
 syn keyword forthStack 3DUP 4DUP 5DUP 3DROP 4DROP 5DROP 8DROP 4SWAP 4ROT
 syn keyword forthStack 4-ROT 4TUCK 8SWAP 8DUP
-syn keyword forthRStack >R R> R@ RDROP 2>R 2R> 2R@ 2RDROP
+syn keyword forthRStack >R R> R@ RDROP 2>R 2R> 2R@
 syn keyword forthRstack 4>R 4R> 4R@ 4RDROP
 syn keyword forthFStack FDROP FNIP FDUP FOVER FTUCK FSWAP FROT
 
@@ -96,7 +94,7 @@ syn match forthColonDef '\<:M\?\s*[^ \t]\+\>'
 syn keyword forthEndOfColonDef ; ;M
 syn keyword forthEndOfClassDef ;CLASS
 syn keyword forthEndOfObjectDef ;OBJECT
-syn keyword forthDefine CONSTANT 2CONSTANT FCONSTANT VARIABLE 2VARIABLE
+syn keyword forthDefine CONSTANT FCONSTANT VARIABLE
 syn keyword forthDefine FVARIABLE CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
 syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
 syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
@@ -123,7 +121,7 @@ syn match forthCharOps '\<\[CHAR]\s\S\s'
 
 " char-number conversion
 syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
-syn keyword forthConversion D>S DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
+syn keyword forthConversion DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 syn keyword forthConversion F>S S>F HOLDS
 
 " interpreter, wordbook, compiler
@@ -156,6 +154,18 @@ syn keyword forthBlocks EMPTY-BUFFERS LIST SCR THRU
 syn keyword forthBlocks OPEN-BLOCKS USE --> BLOCK-OFFSET
 syn keyword forthBlocks GET-BLOCK-FID BLOCK-POSITION EMPTY-BUFFER UPDATED?
 syn keyword forthBlocks SAVE-BUFFER +LOAD +THRU BLOCK-INCLUDED
+
+" The optional Double-Number word set
+syn keyword forthConversion D>S
+syn keyword forthDefine 2CONSTANT 2LITERAL 2VALUE 2VARIABLE
+syn keyword forthFunction D. D.R
+syn keyword forthOperators DABS D= DMAX DMIN D- DNEGATE D+ D2/ D2* DU< D0=
+syn keyword forthOperators D0< D< M+ M*/
+syn keyword forthStack 2ROT
+
+" Non-standard Double-Number words
+syn keyword forthOperators D0<= D0<> D0> D0>= D<= D<> D> D>= DU<= DU> DU>=
+syn keyword forthStack 2NIP 2TUCK 2-ROT 2RDROP
 
 " The optional Programming-Tools wordset
 syn match forthDefine "\<\[DEFINED]\>"

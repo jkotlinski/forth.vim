@@ -58,16 +58,15 @@ dup-drop \ dup and drop should not be highlighted
 + - * / MOD /MOD NEGATE ABS MIN MAX
 AND OR XOR NOT LSHIFT RSHIFT INVERT 2* 2/ 1+
 1- 2+ 2- 8* UNDER+
-M+ */ */MOD M* UM* M*/ UM/MOD FM/MOD SM/REM
-D+ D- DNEGATE DABS DMIN DMAX D2* D2/
+*/ */MOD M* UM* M*/ UM/MOD FM/MOD SM/REM
 F+ F- F* F/ FNEGATE FABS FMAX FMIN FLOOR FROUND
 F** FSQRT FEXP FEXPM1 FLN FLNP1 FLOG FALOG FSIN
 FCOS FSINCOS FTAN FASIN FACOS FATAN FATAN2 FSINH
 FCOSH FTANH FASINH FACOSH FATANH F2* F2/ 1/F
 F~REL F~ABS F~
 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
-U> U>= D0< D0<= D0<> D0= D0> D0>= D< D<= D<>
-D= D> D>= DU< DU<= DU> DU>= WITHIN ?NEGATE
+U> U>= D0<= D0<> D0> D0>= D<= D<>
+D> D>= DU<= DU> DU>= WITHIN ?NEGATE
 ?DNEGATE
 
 \ various words that take an input and do something with it
@@ -124,7 +123,7 @@ KEY? TIB CR BL COUNT SPACE SPACES
 
 \ char-number conversion
 <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
-D>S DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
+DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 F>S S>F HOLDS
 
 \ interpreter, wordbook, compiler
@@ -157,6 +156,10 @@ BLOCK-INCLUDED BLK
 \ The optional Blocks word set
 BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
 EMPTY-BUFFERS LIST REFILL SCR THRU
+
+\ The optional Double-Number word set
+DABS D.R D= DMAX DMIN D- DNEGATE D+ D2/ D2* DU< D0= D0< D. D<
+D>S M+ M*/ 2CONSTANT 2LITERAL 2ROT 2VALUE 2VARIABLE
 
 \ The optional Exception word set
 ABORT
@@ -202,3 +205,5 @@ $123. $cafe. $-123. $-cafe.
 
 INCLUDE filename
 REQUIRE filename
+
+\ vim: set tw=64:
