@@ -112,7 +112,7 @@ syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
 syn match forthDebug "\<\~\~\>"
 
 " basic character operations
-syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
+syn keyword forthCharOps (.) EXPECT WORD TYPE EMIT KEY
 syn keyword forthCharOps TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
@@ -131,10 +131,6 @@ syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
 syn keyword forthForth SAVE-INPUT SOURCE-ID
-
-" vocabularies
-syn keyword forthVocs ONLY FORTH ALSO ROOT SEAL VOCS ORDER CONTEXT #VOCS
-syn keyword forthVocs VOCABULARY DEFINITIONS
 
 " File keywords
 syn keyword forthFileMode R/O R/W W/O BIN
@@ -206,6 +202,15 @@ syn match forthDefine "\<\[UNTIL]\>"
 syn match forthDefine "\<\[AGAIN]\>"
 syn match forthDefine "\<\[WHILE]\>"
 syn match forthDefine "\<\[REPEAT]\>"
+
+" The optional Search-Order word set
+" Handled as Core words - FIND
+syn keyword forthVocs ALSO DEFINITIONS FIND FORTH-WORDLIST FORTH GET-CURRENT
+syn keyword forthVocs GET-ORDER ONLY ORDER PREVIOUS SEARCH-WORDLIST
+syn keyword forthVocs SET-CURRENT SET-ORDER WORDLIST
+
+" Non-standard Search-Order words
+syn keyword forthVocs ROOT SEAL VOCS CONTEXT #VOCS VOCABULARY
 
 " The optional String word set
 syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
