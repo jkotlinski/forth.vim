@@ -113,7 +113,7 @@ syn match forthDebug "\<\~\~\>"
 
 " basic character operations
 syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
-syn keyword forthCharOps KEY? TIB CR BL COUNT SPACE SPACES
+syn keyword forthCharOps TIB CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
 syn match forthCharOps '\<CHAR\s\S\s'
@@ -166,6 +166,15 @@ syn keyword forthStack 2ROT
 " Non-standard Double-Number words
 syn keyword forthOperators D0<= D0<> D0> D0>= D<= D<> D> D>= DU<= DU> DU>=
 syn keyword forthStack 2NIP 2TUCK 2-ROT 2RDROP
+
+" The optional Facility word set
+syn keyword forthDefine BEGIN-STRUCTURE END-STRUCTURE FIELD: CFIELD: +FIELD
+syn keyword forthCharOps AT-XY KEY? EKEY EKEY? EKEY>CHAR EKEY>FKEY EMIT? PAGE
+syn keyword forthCharOps K-ALT-MASK K-CTRL-MASK K-DELETE K-DOWN K-END K-F3
+syn keyword forthCharOps K-F4 K-F5 K-F6 K-F7 K-F8 K-F9 K-F1 K-F11 K-F12 K-F10
+syn keyword forthCharOps K-F2 K-HOME K-INSERT K-LEFT K-NEXT K-PRIOR K-RIGHT
+syn keyword forthCharOps K-SHIFT-MASK K-UP
+syn keyword forthForth MS TIME&DATE
 
 " The optional Programming-Tools wordset
 syn match forthDefine "\<\[DEFINED]\>"
