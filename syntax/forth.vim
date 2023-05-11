@@ -226,6 +226,16 @@ syn keyword forthVocs ROOT SEAL VOCS CONTEXT #VOCS VOCABULARY
 syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
 syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
+" The optional Extended-Character word set
+" Handled as Core words - [CHAR] CHAR and PARSE
+syn keyword forthCharOps EKEY>XCHAR
+syn keyword forthString -TRAILING-GARBAGE
+syn keyword forthDefine XC,
+syn keyword forthMemory XC@+ XC!+ XC!+?
+syn keyword forthAdrArith XCHAR- XCHAR+ +X/STRING X\\STRING-
+syn keyword forthCharOps X-SIZE X-WIDTH XC-SIZE XC-WIDTH XEMIT XKEY XKEY?
+syn keyword forthConversion XHOLD
+
 " booleans
 syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
 
