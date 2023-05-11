@@ -161,10 +161,7 @@ DABS D.R D= DMAX DMIN D- DNEGATE D+ D2/ D2* DU< D0= D0< D. D<
 D>S M+ M*/ 2CONSTANT 2LITERAL 2ROT 2VALUE 2VARIABLE
 
 \ The optional Exception word set
-ABORT
-ABORT" message"
-ABORT" message
-not-continued-message
+ABORT ABORT" message"
 CATCH THROW
 
 \ The optional Facility word set
@@ -208,6 +205,13 @@ DECIMAL HEX BASE
 
 [CHAR] ( this-is-not-a-comment
 CHAR ( this-is-not-a-comment
+
+\ --- Abort
+
+ABORT ABORT" message"
+
+ABORT" message
+not-continued-message
 
 \ --- Numbers
 

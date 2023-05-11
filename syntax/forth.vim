@@ -125,7 +125,7 @@ syn keyword forthConversion DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 syn keyword forthConversion F>S S>F HOLDS
 
 " interpreter, wordbook, compiler
-syn keyword forthForth (LOCAL) COLD >BODY >NEXT >LINK CFA >VIEW HERE
+syn keyword forthForth (LOCAL) COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
 syn keyword forthForth PAD VIEW VIEW> N>LINK NAME> LINK> L>NAME
 syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
@@ -152,6 +152,10 @@ syn keyword forthStack 2ROT
 " Non-standard Double-Number words
 syn keyword forthOperators D0<= D0<> D0> D0>= D<= D<> D> D>= DU<= DU> DU>=
 syn keyword forthStack 2NIP 2TUCK 2-ROT 2RDROP
+
+" The optional Exception word set
+" Handled as Core words - ABORT ABORT"
+syn keyword forthCond CATCH THROW
 
 " The optional File-Access word set
 " Handled as Core words - INCLUDE REFILL REQUIRE SOURCE-IDS S\" S" (
@@ -244,12 +248,6 @@ syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+
 syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
 
-" The optional Exception word set
-" TODO: currently needs to appear after catch-all string group
-syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
-syn keyword forthForth ABORT
-syn keyword forthCond CATCH THROW
-
 " Comments
 
 " XXX If you find this overkill you can remove it. This has to come after the
@@ -259,6 +257,9 @@ syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\
 syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
+
+" Abort"
+syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
 
 " Include files
 syn match forthInclude '\<INCLUDE\s\+\k\+'
