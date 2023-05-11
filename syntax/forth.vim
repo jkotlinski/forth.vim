@@ -82,7 +82,7 @@ syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
 syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD CATCH THROW WITHIN
+syn keyword forthCond ?DUP-0=-IF AHEAD WITHIN
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
@@ -127,7 +127,7 @@ syn keyword forthConversion D>S DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
 syn keyword forthConversion F>S S>F HOLDS
 
 " interpreter, wordbook, compiler
-syn keyword forthForth (LOCAL) COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
+syn keyword forthForth (LOCAL) COLD >BODY >NEXT >LINK CFA >VIEW HERE
 syn keyword forthForth PAD VIEW VIEW> N>LINK NAME> LINK> L>NAME
 syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
@@ -147,10 +147,6 @@ syn keyword forthFileWords FLUSH-FILE FILE-STATUS FILE-POSITION
 syn keyword forthFileWords REPOSITION-FILE FILE-SIZE RESIZE-FILE
 syn keyword forthFileWords SLURP-FILE SLURP-FID STDIN STDOUT STDERR
 syn keyword forthFileWords INCLUDE-FILE INCLUDED REQUIRED
-
-" The optional String word set
-syn keyword forthFunction -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE
-syn keyword forthFunction SEARCH SLITERAL REPLACES SUBSTITUTE UNESCAPE
 
 " The optional Block word set
 syn keyword forthBlocks BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
@@ -218,6 +214,12 @@ syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+
 syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
 
+" The optional Exception word set
+" TODO: currently needs to appear after catch-all string group
+syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
+syn keyword forthForth ABORT
+syn keyword forthCond CATCH THROW
+
 " Comments
 
 " XXX If you find this overkill you can remove it. This has to come after the
@@ -227,9 +229,6 @@ syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\
 syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
 syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
-
-" Abort"
-syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
 
 " Include files
 syn match forthInclude '\<INCLUDE\s\+\k\+'
