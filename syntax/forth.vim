@@ -75,7 +75,7 @@ syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ CELL ALIGN ALIGNED FLOATS
 syn keyword forthAdrArith FLOAT+ FLOAT FALIGN FALIGNED SFLOATS SFLOAT+
 syn keyword forthAdrArith SFALIGN SFALIGNED DFLOATS DFLOAT+ DFALIGN DFALIGNED
 syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
-syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT ALLOCATE
+syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT
 syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
@@ -171,6 +171,9 @@ syn keyword forthCharOps K-F4 K-F5 K-F6 K-F7 K-F8 K-F9 K-F1 K-F11 K-F12 K-F10
 syn keyword forthCharOps K-F2 K-HOME K-INSERT K-LEFT K-NEXT K-PRIOR K-RIGHT
 syn keyword forthCharOps K-SHIFT-MASK K-UP
 syn keyword forthForth MS TIME&DATE
+
+" The optional Memory-Allocation word set
+syn keyword forthMemory ALLOCATE FREE RESIZE
 
 " The optional Programming-Tools wordset
 syn match forthDefine "\<\[DEFINED]\>"
