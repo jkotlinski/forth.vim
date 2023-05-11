@@ -132,16 +132,6 @@ syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
 syn keyword forthForth SAVE-INPUT SOURCE-ID
 
-" File keywords
-syn keyword forthFileMode R/O R/W W/O BIN
-syn keyword forthFileWords OPEN-FILE CREATE-FILE CLOSE-FILE DELETE-FILE
-syn keyword forthFileWords RENAME-FILE READ-FILE READ-LINE KEY-FILE
-syn keyword forthFileWords KEY?-FILE WRITE-FILE WRITE-LINE EMIT-FILE
-syn keyword forthFileWords FLUSH-FILE FILE-STATUS FILE-POSITION
-syn keyword forthFileWords REPOSITION-FILE FILE-SIZE RESIZE-FILE
-syn keyword forthFileWords SLURP-FILE SLURP-FID STDIN STDOUT STDERR
-syn keyword forthFileWords INCLUDE-FILE INCLUDED REQUIRED
-
 " The optional Block word set
 syn keyword forthBlocks BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
 syn keyword forthBlocks EMPTY-BUFFERS LIST SCR THRU
@@ -162,6 +152,19 @@ syn keyword forthStack 2ROT
 " Non-standard Double-Number words
 syn keyword forthOperators D0<= D0<> D0> D0>= D<= D<> D> D>= DU<= DU> DU>=
 syn keyword forthStack 2NIP 2TUCK 2-ROT 2RDROP
+
+" The optional File-Access word set
+" Handled as Core words - INCLUDE REFILL REQUIRE SOURCE-IDS S\" S" (
+syn keyword forthFileMode BIN R/O R/W W/O
+syn keyword forthFileWords CLOSE-FILE CREATE-FILE DELETE-FILE FILE-POSITION
+syn keyword forthFileWords FILE-SIZE FILE-STATUS FLUSH-FILE INCLUDE-FILE
+syn keyword forthFileWords INCLUDED OPEN-FILE READ-FILE READ-LINE RENAME-FILE
+syn keyword forthFileWords REPOSITION-FILE REQUIRED RESIZE-FILE WRITE-FILE
+syn keyword forthFileWords WRITE-LINE
+
+" Non-standard File-Access words
+syn keyword forthFileWords KEY-FILE KEY?-FILE EMIT-FILE SLURP-FILE SLURP-FID
+syn keyword forthFileWords STDIN STDOUT STDERR
 
 " The optional Facility word set
 syn keyword forthDefine BEGIN-STRUCTURE END-STRUCTURE FIELD: CFIELD: +FIELD
