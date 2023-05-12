@@ -45,11 +45,6 @@ syn keyword forthOperators + - * / MOD /MOD NEGATE ABS MIN MAX
 syn keyword forthOperators AND OR XOR NOT LSHIFT RSHIFT INVERT 2* 2/ 1+
 syn keyword forthOperators 1- 2+ 2- 8* UNDER+
 syn keyword forthOperators */ */MOD M* UM* UM/MOD FM/MOD SM/REM
-syn keyword forthOperators F+ F- F* F/ FNEGATE FABS FMAX FMIN FLOOR FROUND
-syn keyword forthOperators F** FSQRT FEXP FEXPM1 FLN FLNP1 FLOG FALOG FSIN
-syn keyword forthOperators FCOS FSINCOS FTAN FASIN FACOS FATAN FATAN2 FSINH
-syn keyword forthOperators FCOSH FTANH FASINH FACOSH FATANH F2* F2/ 1/F
-syn keyword forthOperators F~REL F~ABS F~
 syn keyword forthOperators 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
 syn keyword forthOperators U> U>= WITHIN ?NEGATE
 syn keyword forthOperators ?DNEGATE
@@ -64,16 +59,13 @@ syn keyword forthStack 3DUP 4DUP 5DUP 3DROP 4DROP 5DROP 8DROP 4SWAP 4ROT
 syn keyword forthStack 4-ROT 4TUCK 8SWAP 8DUP
 syn keyword forthRStack >R R> R@ RDROP 2>R 2R> 2R@
 syn keyword forthRstack 4>R 4R> 4R@ 4RDROP
-syn keyword forthFStack FDROP FNIP FDUP FOVER FTUCK FSWAP FROT
 
 " stack pointer manipulations
 syn keyword forthSP SP@ SP! FP@ FP! RP@ RP! LP@ LP! DEPTH
 
 " address operations
-syn keyword forthMemory @ ! +! C@ C! 2@ 2! F@ F! SF@ SF! DF@ DF!
-syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ CELL ALIGN ALIGNED FLOATS
-syn keyword forthAdrArith FLOAT+ FLOAT FALIGN FALIGNED SFLOATS SFLOAT+
-syn keyword forthAdrArith SFALIGN SFALIGNED DFLOATS DFLOAT+ DFALIGN DFALIGNED
+syn keyword forthMemory @ ! +! C@ C! 2@ 2!
+syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ CELL ALIGN ALIGNED FLOAT
 syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
 syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT
 syn keyword forthMemBlks MOVE ERASE FILL UNUSED
@@ -94,8 +86,8 @@ syn match forthColonDef '\<:M\?\s*[^ \t]\+\>'
 syn keyword forthEndOfColonDef ; ;M
 syn keyword forthEndOfClassDef ;CLASS
 syn keyword forthEndOfObjectDef ;OBJECT
-syn keyword forthDefine CONSTANT FCONSTANT VARIABLE
-syn keyword forthDefine FVARIABLE CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
+syn keyword forthDefine CONSTANT VARIABLE
+syn keyword forthDefine CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
 syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
 syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
 syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION ] LASTXT
@@ -120,9 +112,8 @@ syn match forthCharOps '\<CHAR\s\S\s'
 syn match forthCharOps '\<\[CHAR]\s\S\s'
 
 " char-number conversion
-syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT D>F
-syn keyword forthConversion DIGIT DPL F>D HLD HOLD NUMBER S>D SIGN >NUMBER
-syn keyword forthConversion F>S S>F HOLDS
+syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT
+syn keyword forthConversion DIGIT DPL HLD HOLD HOLDS NUMBER S>D SIGN >NUMBER
 
 " interpreter, wordbook, compiler
 syn keyword forthForth (LOCAL) COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
@@ -178,6 +169,27 @@ syn keyword forthCharOps K-F4 K-F5 K-F6 K-F7 K-F8 K-F9 K-F1 K-F11 K-F12 K-F10
 syn keyword forthCharOps K-F2 K-HOME K-INSERT K-LEFT K-NEXT K-PRIOR K-RIGHT
 syn keyword forthCharOps K-SHIFT-MASK K-UP
 syn keyword forthForth MS TIME&DATE
+
+" The optional Floating-Point word set
+syn keyword forthOperators F+ F- F* F/ FNEGATE FABS FMAX FMIN FLOOR FROUND
+syn keyword forthOperators F** FSQRT FEXP FEXPM1 FLN FLNP1 FLOG FALOG FSIN
+syn keyword forthOperators FCOS FSINCOS FTAN FASIN FACOS FATAN FATAN2 FSINH
+syn keyword forthOperators FCOSH FTANH FASINH FACOSH FATANH F~ FTRUNC
+syn keyword forthOperators F0= F0< F<
+syn keyword forthFunction F. FE. FS.
+syn keyword forthFunction PRECISION SET-PRECISION REPRESENT
+syn keyword forthFStack FDROP FDUP FOVER FSWAP FROT
+syn keyword forthSP FDEPTH
+syn keyword forthMemory F@ F! SF@ SF! DF@ DF!
+syn keyword forthAdrArith FLOATS FLOAT+ FALIGN FALIGNED SFLOATS SFLOAT+
+syn keyword forthAdrArith SFALIGN SFALIGNED DFLOATS DFLOAT+ DFALIGN DFALIGNED
+syn keyword forthDefine FCONSTANT FLITERAL FVALUE FVARIABLE
+syn keyword forthDefine FFIELD: DFFIELD: SFFIELD:
+syn keyword forthConversion S>F D>F F>S F>D >FLOAT
+
+" Non-standard Floating-Point words
+syn keyword forthOperators F~REL F~ABS F2* F2/ 1/F
+syn keyword forthFStack FNIP FTUCK
 
 " The optional Memory-Allocation word set
 syn keyword forthMemory ALLOCATE FREE RESIZE
