@@ -82,7 +82,7 @@ syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
 " conditionals
 syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD CS-PICK CS-ROLL CATCH THROW WITHIN
+syn keyword forthCond ?DUP-0=-IF AHEAD CS-PICK CS-ROLL CATCH THROW
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
@@ -132,7 +132,7 @@ syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
 syn match forthDebug "\<\~\~\>"
 
 " Assembler
-syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE C,
+syn keyword forthAssembler ASSEMBLER CODE END-CODE ;CODE FLUSH-ICACHE
 
 " basic character operations
 syn keyword forthCharOps (.) EXPECT FIND WORD TYPE EMIT KEY
