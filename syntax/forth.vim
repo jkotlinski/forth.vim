@@ -116,7 +116,7 @@ syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT
 syn keyword forthConversion DIGIT DPL HLD HOLD HOLDS NUMBER S>D SIGN >NUMBER
 
 " interpreter, wordbook, compiler
-syn keyword forthForth (LOCAL) COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
+syn keyword forthForth COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
 syn keyword forthForth PAD VIEW VIEW> N>LINK NAME> LINK> L>NAME
 syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
@@ -190,6 +190,14 @@ syn keyword forthConversion S>F D>F F>S F>D >FLOAT
 " Non-standard Floating-Point words
 syn keyword forthOperators F~REL F~ABS F2* F2/ 1/F
 syn keyword forthFStack FNIP FTUCK
+
+" The optional Locals word set
+syn keyword forthForth (LOCAL)
+syn region forthLocals start="\<{:\>" end="\<:}\>"
+syn region forthDeprecated start="\<LOCALS|\>" end="\<|\>"
+
+" Non-standard Locals words
+syn region forthLocals start="\<{\>" end="\<}\>"
 
 " The optional Memory-Allocation word set
 syn keyword forthMemory ALLOCATE FREE RESIZE
@@ -288,12 +296,6 @@ syn match forthInclude '\<INCLUDE\s\+\k\+'
 syn match forthInclude '\<REQUIRE\s\+\k\+'
 syn match forthInclude '^FLOAD\s\+'
 syn match forthInclude '^NEEDS\s\+'
-
-" Locals definitions.
-" TODO: update to Forth standard.
-syn region forthLocals start='\<{\s' start='\<{$' end='\s}\>' end='^}\>'
-syn match forthLocals '\<{ }\>' " otherwise, at least two spaces between
-syn region forthDeprecated start='\<LOCALS|' end='|\>'
 
 " Define the default highlighting.
 hi def link forthBoolean Boolean

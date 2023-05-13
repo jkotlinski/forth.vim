@@ -187,6 +187,11 @@ FS. F! FTAN FTANH FTRUNC F* F** FVALUE FVARIABLE F0= F0< F. F<
 F~ F>D F>S PRECISION REPRESENT SET-PRECISION SFALIGN SFALIGNED
 SFFIELD: SF@ SFLOAT+ SFLOATS SF! S>F >FLOAT
 
+\ The optional Locals word set
+(LOCAL)
+{: a b c | d e f -- g h i :}
+LOCALS| a b c |
+
 \ The optional Memory-Allocation word set
 ALLOCATE FREE RESIZE
 
