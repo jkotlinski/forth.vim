@@ -37,7 +37,10 @@ let s:define_patterns =<< trim EOL
 EOL
 let &l:define = $'\c\<\%({ s:define_patterns->join('\|') }\)'
 
-let b:undo_ftplugin = "setl cms< com< def< inc< isk<"
+" assume consistent intra-project file extensions
+let &l:suffixesadd = expand("%:e")
+
+let b:undo_ftplugin = "setl cms< com< def< inc< isk< sua<"
 
 if exists("loaded_matchit") && !exists("b:match_words")
   let s:matchit_patterns =<< trim EOL
