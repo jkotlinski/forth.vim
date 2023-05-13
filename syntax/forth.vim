@@ -38,90 +38,180 @@ if exists("forth_space_errors")
     endif
 endif
 
-" Keywords
+" Core words
 
 " basic mathematical and logical operators
 syn keyword forthOperators + - * / MOD /MOD NEGATE ABS MIN MAX
-syn keyword forthOperators AND OR XOR NOT LSHIFT RSHIFT INVERT 2* 2/ 1+
-syn keyword forthOperators 1- 2+ 2- 8* UNDER+
+syn keyword forthOperators AND OR XOR LSHIFT RSHIFT INVERT 2* 2/ 1+
+syn keyword forthOperators 1-
 syn keyword forthOperators */ */MOD M* UM* UM/MOD FM/MOD SM/REM
-syn keyword forthOperators 0< 0<= 0<> 0= 0> 0>= < <= <> = > >= U< U<=
-syn keyword forthOperators U> U>= WITHIN ?NEGATE
+syn keyword forthOperators 0< 0<> 0= 0> < <> = > U<
+syn keyword forthOperators U> WITHIN
+
+" non-standard basic mathematical and logical operators
+syn keyword forthOperators NOT
+syn keyword forthOperators 2+ 2- 8* UNDER+
+syn keyword forthOperators 0<= 0>= <= >= U<=
+syn keyword forthOperators U>= ?NEGATE
 syn keyword forthOperators ?DNEGATE
 
 " various words that take an input and do something with it
 syn keyword forthFunction . U. .R U.R
 
 " stack manipulations
-syn keyword forthStack DROP NIP DUP OVER TUCK SWAP ROT -ROT ?DUP PICK ROLL
+syn keyword forthStack DROP NIP DUP OVER TUCK SWAP ROT ?DUP PICK ROLL
 syn keyword forthStack 2DROP 2DUP 2OVER 2SWAP
+syn keyword forthRStack >R R> R@ 2>R 2R> 2R@
+
+" non-standard stack manipulations
+syn keyword forthStack -ROT
 syn keyword forthStack 3DUP 4DUP 5DUP 3DROP 4DROP 5DROP 8DROP 4SWAP 4ROT
 syn keyword forthStack 4-ROT 4TUCK 8SWAP 8DUP
-syn keyword forthRStack >R R> R@ RDROP 2>R 2R> 2R@
+syn keyword forthRStack RDROP
 syn keyword forthRstack 4>R 4R> 4R@ 4RDROP
 
 " stack pointer manipulations
-syn keyword forthSP SP@ SP! FP@ FP! RP@ RP! LP@ LP! DEPTH
+syn keyword forthSP DEPTH
+
+" non-standard stack pointer manipulations
+syn keyword forthSP SP@ SP! FP@ FP! RP@ RP! LP@ LP!
 
 " address operations
 syn keyword forthMemory @ ! +! C@ C! 2@ 2!
-syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ CELL ALIGN ALIGNED FLOAT
-syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
-syn keyword forthAdrArith ADDRESS-UNIT-BITS ALLOT
+syn keyword forthAdrArith CHARS CHAR+ CELLS CELL+ ALIGN ALIGNED
+syn keyword forthAdrArith ALLOT
 syn keyword forthMemBlks MOVE ERASE FILL UNUSED
 
+" non-standard address operations
+syn keyword forthAdrArith CELL FLOAT
+syn keyword forthAdrArith MAXALIGN MAXALIGNED CFALIGN CFALIGNED
+syn keyword forthAdrArith ADDRESS-UNIT-BITS
+
 " conditionals
-syn keyword forthCond IF ELSE ENDIF THEN CASE OF ENDOF ENDCASE ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD WITHIN
+syn keyword forthCond IF ELSE THEN CASE OF ENDOF ENDCASE
+syn keyword forthCond WITHIN
+
+" non-standard conditionals
+syn keyword forthCond ENDIF ?DUP-IF
+syn keyword forthCond ?DUP-0=-IF AHEAD
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
-syn keyword forthLoop ?DO LOOP I J K +DO U+DO -DO U-DO DO +LOOP -LOOP
-syn keyword forthLoop UNLOOP LEAVE ?LEAVE EXIT DONE FOR NEXT RECURSE
+syn keyword forthLoop ?DO LOOP I J DO +LOOP
+syn keyword forthLoop UNLOOP LEAVE EXIT RECURSE
+
+" non-standard iterations
+syn keyword forthLoop K +DO U+DO -DO U-DO -LOOP
+syn keyword forthLoop ?LEAVE DONE FOR NEXT
 
 " new words
-syn match forthClassDef '\<:CLASS\s*[^ \t]\+\>'
-syn match forthObjectDef '\<:OBJECT\s*[^ \t]\+\>'
-syn match forthColonDef '\<:M\?\s*[^ \t]\+\>'
-syn keyword forthEndOfColonDef ; ;M
+syn match forthColonDef "\<:\s*[^ \t]\+\>"
+syn keyword forthEndOfColonDef ;
+syn keyword forthDefine CONSTANT VARIABLE
+syn keyword forthDefine CREATE VALUE TO DEFER IS DOES> IMMEDIATE
+syn keyword forthDefine POSTPONE EXECUTE
+syn keyword forthDefine ]
+syn keyword forthDefine LITERAL
+syn keyword forthDefine STATE BUFFER: MARKER
+syn keyword forthDefine , C, COMPILE, '
+syn match forthDefine "\<\[\>"
+syn match forthDefine "\<\[']\>"
+syn match forthDefine "\<\[COMPILE]\>"
+
+" non-standard new words
+syn match forthClassDef "\<:CLASS\s*[^ \t]\+\>"
+syn match forthObjectDef "\<:OBJECT\s*[^ \t]\+\>"
+syn match forthColonDef "\<:M\s*[^ \t]\+\>"
+syn keyword forthEndOfColonDef ;M
 syn keyword forthEndOfClassDef ;CLASS
 syn keyword forthEndOfObjectDef ;OBJECT
-syn keyword forthDefine CONSTANT VARIABLE
-syn keyword forthDefine CREATE USER VALUE TO DEFER IS <BUILDS DOES> IMMEDIATE
-syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET POSTPONE EXECUTE
-syn keyword forthDefine LITERAL CREATE-INTERPRET/COMPILE INTERPRETATION>
-syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION ] LASTXT
+syn keyword forthDefine USER <BUILDS
+syn keyword forthDefine COMPILE-ONLY COMPILE RESTRICT INTERPRET
+syn keyword forthDefine CREATE-INTERPRET/COMPILE INTERPRETATION>
+syn keyword forthDefine <INTERPRETATION COMPILATION> <COMPILATION LASTXT
 syn keyword forthDefine COMP' POSTPONE, FIND-NAME NAME>INT NAME?INT NAME>COMP
-syn keyword forthDefine STATE C; CVARIABLE BUFFER: MARKER
-syn keyword forthDefine , 2, F, C, COMPILE, '
+syn keyword forthDefine C; CVARIABLE
+syn keyword forthDefine 2, F,
 syn match forthDefine "\<\[COMP']\>"
-syn match forthDefine '\<\[\>'
-syn match forthDefine "\<\[']\>"
-syn match forthDefine '\<\[COMPILE]\>'
 
-" debugging
+" non-standard debugging
 syn keyword forthDebug PRINTDEBUGDATA PRINTDEBUGLINE
 syn match forthDebug "\<\~\~\>"
 
 " basic character operations
-syn keyword forthCharOps (.) EXPECT WORD TYPE EMIT KEY
-syn keyword forthCharOps TIB CR BL COUNT SPACE SPACES
+syn keyword forthCharOps WORD TYPE EMIT KEY
+syn keyword forthCharOps CR BL COUNT SPACE SPACES
 " recognize 'char (' or '[CHAR] (' correctly, so it doesn't
 " highlight everything after the paren as a comment till a closing ')'
 syn match forthCharOps '\<CHAR\s\S\s'
 syn match forthCharOps '\<\[CHAR]\s\S\s'
 
+" non-standard basic character operations
+syn keyword forthCharOps (.) EXPECT
+syn keyword forthCharOps TIB
+
 " char-number conversion
-syn keyword forthConversion <<# <# # #> #>> #S (NUMBER) (NUMBER?) CONVERT
-syn keyword forthConversion DIGIT DPL HLD HOLD HOLDS NUMBER S>D SIGN >NUMBER
+syn keyword forthConversion <# # #> #S
+syn keyword forthConversion HOLD HOLDS S>D SIGN >NUMBER
+
+" non-standard char-number conversion
+syn keyword forthConversion <<# #>> (NUMBER) (NUMBER?) CONVERT
+syn keyword forthConversion DIGIT DPL HLD NUMBER
 
 " interpreter, wordbook, compiler
-syn keyword forthForth COLD ABORT >BODY >NEXT >LINK CFA >VIEW HERE
-syn keyword forthForth PAD VIEW VIEW> N>LINK NAME> LINK> L>NAME
-syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
+syn keyword forthForth ABORT >BODY HERE
+syn keyword forthForth PAD
 syn keyword forthForth >IN ACCEPT ENVIRONMENT? EVALUATE QUIT SOURCE ACTION-OF
 syn keyword forthForth DEFER! DEFER@ PARSE PARSE-NAME REFILL RESTORE-INPUT
 syn keyword forthForth SAVE-INPUT SOURCE-ID
+
+" non-standard interpreter, wordbook, compiler
+syn keyword forthForth COLD >NEXT >LINK CFA >VIEW
+syn keyword forthForth VIEW VIEW> N>LINK NAME> LINK> L>NAME
+syn keyword forthForth BODY> ASSERT( ASSERT0( ASSERT1( ASSERT2( ASSERT3( )
+
+" booleans
+syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
+
+" numbers
+syn keyword forthMath DECIMAL HEX BASE
+syn match forthInteger '\<-\=\d\+\.\=\>'
+syn match forthInteger '\<#-\=\d\+\.\=\>'
+syn match forthInteger '\<\$-\=\x\+\.\=\>'
+syn match forthInteger '\<%-\=[01]\+\.\=\>'
+syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
+
+" Strings
+
+" Words that end with " are assumed to start string parsing.
+" This includes standard words: S" C" ."
+syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"\>+ end=+$+ contains=@Spell
+" Matches s\"
+syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
+
+syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
+syn match forthEscape "\C\\x\x\x" contained
+
+" Comments
+
+" XXX If you find this overkill you can remove it. This has to come after the
+" highlighting for numbers and booleans otherwise it has no effect.
+syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
+
+syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
+syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
+syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
+
+" Abort"
+syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
+
+" Include files
+syn match forthInclude '\<INCLUDE\s\+\k\+'
+syn match forthInclude '\<REQUIRE\s\+\k\+'
+
+" Non-standard Include files
+syn match forthInclude '^FLOAD\s\+'
+syn match forthInclude '^NEEDS\s\+'
 
 " The optional Block word set
 syn keyword forthBlocks BLK BLOCK BUFFER FLUSH LOAD SAVE-BUFFERS UPDATE
@@ -255,47 +345,6 @@ syn keyword forthMemory XC@+ XC!+ XC!+?
 syn keyword forthAdrArith XCHAR- XCHAR+ +X/STRING X\\STRING-
 syn keyword forthCharOps X-SIZE X-WIDTH XC-SIZE XC-WIDTH XEMIT XKEY XKEY?
 syn keyword forthConversion XHOLD
-
-" booleans
-syn match forthBoolean "\<\%(TRUE\|FALSE\)\>"
-
-" numbers
-syn keyword forthMath DECIMAL HEX BASE
-syn match forthInteger '\<-\=\d\+\.\=\>'
-syn match forthInteger '\<#-\=\d\+\.\=\>'
-syn match forthInteger '\<\$-\=\x\+\.\=\>'
-syn match forthInteger '\<%-\=[01]\+\.\=\>'
-syn match forthFloat '\<[+-]\=\d\+\.\=\d*[DdEe][+-]\=\d*\>'
-
-" Strings
-
-" Words that end with " are assumed to start string parsing.
-" This includes standard words: S" C" ."
-syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"\>+ end=+$+ contains=@Spell
-" Matches s\"
-syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
-
-syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
-syn match forthEscape "\C\\x\x\x" contained
-
-" Comments
-
-" XXX If you find this overkill you can remove it. This has to come after the
-" highlighting for numbers and booleans otherwise it has no effect.
-syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
-
-syn match forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
-syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
-syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
-
-" Abort"
-syn region forthForth start=+\<ABORT"\s+ end=+"\>+ end=+$+
-
-" Include files
-syn match forthInclude '\<INCLUDE\s\+\k\+'
-syn match forthInclude '\<REQUIRE\s\+\k\+'
-syn match forthInclude '^FLOAD\s\+'
-syn match forthInclude '^NEEDS\s\+'
 
 " Define the default highlighting.
 hi def link forthBoolean Boolean
