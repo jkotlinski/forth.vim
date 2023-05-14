@@ -89,11 +89,10 @@ syn keyword forthAdrArith ADDRESS-UNIT-BITS
 
 " conditionals
 syn keyword forthCond IF ELSE THEN CASE OF ENDOF ENDCASE
-syn keyword forthCond WITHIN
 
 " non-standard conditionals
 syn keyword forthCond ENDIF ?DUP-IF
-syn keyword forthCond ?DUP-0=-IF AHEAD
+syn keyword forthCond ?DUP-0=-IF
 
 " iterations
 syn keyword forthLoop BEGIN WHILE REPEAT UNTIL AGAIN
