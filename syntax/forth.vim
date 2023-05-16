@@ -283,7 +283,7 @@ syn keyword forthFStack FNIP FTUCK
 " The optional Locals word set
 syn keyword forthForth (LOCAL)
 syn region forthLocals start="\<{:\>" end="\<:}\>"
-syn region forthDeprecated start="\<LOCALS|\>" end="\<|\>"
+syn region forthLocals start="\<LOCALS|\>" end="\<|\>"
 
 " Non-standard Locals words
 syn region forthLocals start="\<{\>" end="\<}\>"
@@ -379,7 +379,6 @@ hi def link forthObjectDef Define
 hi def link forthEndOfObjectDef Define
 hi def link forthInclude Include
 hi def link forthLocals Type " nothing else uses type and locals must stand out
-hi def link forthDeprecated Error " if you must, change to Type
 hi def link forthFileMode Function
 hi def link forthFunction Function
 hi def link forthFileWords Statement
