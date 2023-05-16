@@ -38,7 +38,7 @@ EOL
 let &l:define = $'\c\<\%({ s:define_patterns->join('\|') }\)'
 
 " assume consistent intra-project file extensions
-let &l:suffixesadd = expand("%:e")
+let &l:suffixesadd = "." .. expand("%:e")
 
 let b:undo_ftplugin = "setl cms< com< def< inc< isk< sua<"
 
