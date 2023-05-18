@@ -18,7 +18,6 @@ set cpo&vim
 syn sync ccomment
 syn sync maxlines=200
 
-" I use gforth, so I set this to case ignore
 syn case ignore
 
 " Some special, non-FORTH keywords
