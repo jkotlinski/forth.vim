@@ -21,9 +21,6 @@ syn sync maxlines=200
 " I use gforth, so I set this to case ignore
 syn case ignore
 
-" Some special, non-FORTH keywords
-syn keyword forthTodo contained TODO FIXME XXX
-
 " Characters allowed in keywords
 " I don't know if 128-255 are allowed in ANS-FORTH
 syn iskeyword 33-126,128-255
@@ -192,6 +189,9 @@ syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
 
 " Comments
+
+" Some special, non-FORTH keywords
+syn match forthTodo contained "\<\%(TODO\|FIXME\|XXX\)\%(\>\|:\)\@="
 
 " XXX If you find this overkill you can remove it. This has to come after the
 " highlighting for numbers and booleans otherwise it has no effect.
