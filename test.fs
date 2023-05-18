@@ -43,6 +43,12 @@ S\" mispelt"
 \ --- To Do
 
 \ TODO FIXME XXX
+\ TODO: or not TODO that is...
+\ FIXME: ...
+\ XXX: ...
+
+\ not matched outside comments
+TODO FIXME XXX
 
 \ --- Ignore Case
 
