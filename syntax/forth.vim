@@ -15,8 +15,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 " Synchronization method
-syn sync ccomment
-syn sync maxlines=200
+exe "syn sync minlines=" .. get(g:, "forth_minlines", 50)
 
 syn case ignore
 
