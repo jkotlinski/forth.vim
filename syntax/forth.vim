@@ -15,12 +15,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 " Synchronization method
-if exists("forth_minlines")
-    let b:forth_minlines=forth_minlines
-else
-    let b:forth_minlines=50
-endif
-exec "syn sync minlines=" . b:forth_minlines
+exe "syn sync minlines=" .. get(g:, "forth_minlines", 50)
 
 " I use gforth, so I set this to case ignore
 syn case ignore
