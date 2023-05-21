@@ -15,8 +15,12 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 " Synchronization method
-syn sync ccomment
-syn sync maxlines=200
+if exists("forth_minlines")
+    let b:forth_minlines=forth_minlines
+else
+    let b:forth_minlines=50
+endif
+exec "syn sync minlines=" . b:forth_minlines
 
 " I use gforth, so I set this to case ignore
 syn case ignore
