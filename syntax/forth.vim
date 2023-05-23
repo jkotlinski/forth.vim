@@ -189,7 +189,7 @@ syn match forthEscape "\C\\x\x\x" contained
 " Comments
 
 " Some special, non-FORTH keywords
-syn match forthTodo contained "\<\%(TODO\|FIXME\|XXX\)\%(\>\|:\)\@="
+syn match forthTodo contained "\<\%(TODO\|FIXME\|XXX\)\%(\>\|:\@=\)"
 
 " XXX If you find this overkill you can remove it. This has to come after the
 " highlighting for numbers and booleans otherwise it has no effect.
