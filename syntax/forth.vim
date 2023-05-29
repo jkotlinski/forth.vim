@@ -234,7 +234,7 @@ else
 endif
 
   " extension words
-syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
+syn region forthComment start='\<\.(\>' end=')' end='$' contains=@Spell,forthTodo,forthSpaceError
 
 " ABORT {{{2
 syn keyword forthForth ABORT
