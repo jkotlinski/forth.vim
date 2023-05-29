@@ -202,11 +202,11 @@ syn match forthCharacter "'\k'"
 
 " Words that end with " are assumed to start string parsing.
 " This includes standard words: S" ."
-syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"\>+ end=+$+ contains=@Spell
+syn region forthString matchgroup=forthString start=+\<\S\+"\s+ end=+"+ end=+$+ contains=@Spell
   " extension words
-syn region forthString matchgroup=forthString start=+\<C"\s+ end=+"\>+ end=+$+ contains=@Spell
+syn region forthString matchgroup=forthString start=+\<C"\s+ end=+"+ end=+$+ contains=@Spell
 " Matches S\"
-syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"\>+ end=+$+ contains=@Spell,forthEscape
+syn region forthString matchgroup=forthString start=+\<S\\"\s+ end=+"+ end=+$+ contains=@Spell,forthEscape
 
 syn match forthEscape +\C\\[abeflmnqrtvz"\\]+ contained
 syn match forthEscape "\C\\x\x\x" contained
@@ -223,11 +223,11 @@ syn match forthTodo contained "\<\%(TODO\|FIXME\|XXX\)\%(\>\|:\@=\)"
 syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
 
 if get(g:, "forth_no_comment_fold", 0)
-    syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
+    syn region forthComment start='\<(\>' end=')' contains=@Spell,forthTodo,forthSpaceError
       " extension words
     syn match  forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
 else
-    syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError fold
+    syn region forthComment start='\<(\>' end=')' contains=@Spell,forthTodo,forthSpaceError fold
       " extension words
     syn match  forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
     syn region forthMultilineComment start="^\s*\\\>" end="\n\%(\s*\\\>\)\@!" contains=forthComment transparent fold

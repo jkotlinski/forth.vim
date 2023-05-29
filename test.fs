@@ -24,6 +24,10 @@ FALSE [IF] comment [THEN]
 \ Execute: :set foldmethod=syntax
 \  Result: These three lines should be folded.
 
+\ Verify that comments terminate at the closing ) delimiter.
+( paren)foo
+.( dot-paren)foo
+
 \ --- Strings
 
 \ Verify that strings have their own color.
@@ -38,6 +42,13 @@ S\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
 
 \ Upper-case characters cannot be escaped.
 S\" \A\B\E\F\L\M\N\Q\R\T\V\Z\Xff\X00"
+
+\ Verify that strings terminate at the closing " delimiter.
+S" s-quote"foo
+C" c-quote"foo
+S\" s-backslash-quote"foo
+." dot-quote"foo
+CUSTOM" custom string matching word"foo
 
 \ --- Characters
 
