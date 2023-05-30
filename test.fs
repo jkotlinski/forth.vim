@@ -29,6 +29,11 @@ S\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
 \ Upper-case characters cannot be escaped.
 S\" \A\B\E\F\L\M\N\Q\R\T\V\Z\Xff\X00"
 
+\ --- Characters
+
+'a'
+' ' \ consecutive tick
+
 \ --- Spell Checking
 
 ( activate spell checking by ":set spell"
