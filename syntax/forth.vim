@@ -195,6 +195,9 @@ syn match forthInteger '\<#-\=\d\+\.\=\>'
 syn match forthInteger '\<\$-\=\x\+\.\=\>'
 syn match forthInteger '\<%-\=[01]\+\.\=\>'
 
+" characters {{{2
+syn match forthCharacter "'\k'"
+
 " strings {{{2
 
 " Words that end with " are assumed to start string parsing.
@@ -394,6 +397,7 @@ syn keyword forthString     -TRAILING-GARBAGE
 
 " Define the default highlighting {{{1
 hi def link forthBoolean Boolean
+hi def link forthCharacter Character
 hi def link forthTodo Todo
 hi def link forthOperators Operator
 hi def link forthMath Number
