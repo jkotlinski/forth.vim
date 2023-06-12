@@ -222,9 +222,18 @@ syn match forthTodo contained "\<\%(TODO\|FIXME\|XXX\)\%(\>\|:\@=\)"
 " highlighting for numbers and booleans otherwise it has no effect.
 syn region forthComment start='\<\%(0\|FALSE\)\s\+\[IF]' end='\<\[ENDIF]' end='\<\[THEN]' contains=forthTodo
 
-syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
+if get(g:, "forth_no_comment_fold", 0)
+    syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError
+      " extension words
+    syn match  forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
+else
+    syn region forthComment start='\<(\>' end=')\>' contains=@Spell,forthTodo,forthSpaceError fold
+      " extension words
+    syn match  forthComment '\<\\\>.*$' contains=@Spell,forthTodo,forthSpaceError
+    syn region forthMultilineComment start="^\s*\\\>" end="\n\%(\s*\\\>\)\@!" contains=forthComment transparent fold
+endif
+
   " extension words
-syn match forthComment '\<\\\>.*$'       contains=@Spell,forthTodo,forthSpaceError
 syn match forthComment '\<\.(\s[^)]*)\>' contains=@Spell,forthTodo,forthSpaceError
 
 " ABORT {{{2
