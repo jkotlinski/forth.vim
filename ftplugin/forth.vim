@@ -47,7 +47,7 @@ if exists("loaded_matchit") && !exists("b:match_words")
 
     \<\:\%(NONAME\)\=\>:\<EXIT\>:\<;\>
     \<IF\>:\<ELSE\>:\<THEN\>
-    \[IF]:\[ELSE]:\[THEN]
+    \<\[IF]\>:\<\[ELSE]\>:\<\[THEN]\>
     \<?\=DO\>:\<LEAVE\>:\<+\=LOOP\>
     \<CASE\>:\<ENDCASE\>
     \<OF\>:\<ENDOF\>

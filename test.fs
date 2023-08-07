@@ -1,4 +1,4 @@
-( This file tests Forth syntax highlighting.
+( This file tests Forth syntax highlighting and plugin functionality.
   The goal is that it will cover all functionality.
   Please update this file as you make changes. )
 
@@ -372,5 +372,69 @@ XC!+ XC!+? XC@+
 CHAR ( EKEY>XCHAR X-WIDTH XC-WIDTH [CHAR] ( 
 XHOLD
 -TRAILING-GARBAGE
+( Plugin Functionality Tests)
+
+\ --- Matchit
+
+\ TEST:    Matchit functionality for colon definitions.
+\ EXECUTE: With the cursor intially positioned on the ":" or ":NONAME" in the
+\   examples, execute the Vim % command repeatedly.
+\ RESULT:  The cursor should cycle between ":" or ":NONAME",
+\   "EXIT" and ";" ignoring those words contained in strings and
+\   comments.
+
+: MATCHIT ( -- )
+    S" skip these : :NONAME EXIT ;"
+    EXIT
+    ( and these : :NONAME EXIT ;)
+;
+
+:NONAME ( -- )
+    S" skip these : :NONAME EXIT ;"
+    EXIT
+    ( and these : :NONAME EXIT ;)
+;
+
+\ TEST:    Matchit functionality for conditional compilation
+\   words.
+\ EXECUTE: With the cursor intially positioned on the "[IF]" in the
+\   example, execute the Vim % command repeatedly.
+\ RESULT:  The cursor should cycle between "[IF]", "[ELSE]" and
+\   "[THEN]" ignoring those words contained in strings and
+\   comments.
+
+0 [IF]
+    S" skip these [ELSE] [THEN]"
+[ELSE]
+    ( skip these [ELSE] [THEN])
+[THEN]
+
+\ --- Definition Search ('define' and 'include' options)
+
+\ TEST:    Test definition searches within a single file.
+\ EXECUTE: With the cursor on MEANING in line 2 execute the Vim
+\   [d command.
+\ RESULT:  The definition of MEANING should be displayed in the
+\   message line.
+
+42 CONSTANT MEANING
+MEANING \ <- execute [d here
+
+\ TEST:    Test definition searches in included files.
+\ EXECUTE: With the cursor on the word ELSEWHERE1 execute the
+\   Vim [<C-D> command.
+\ RESULT:  The definition of ELSEWHERE1 should be displayed in
+\   the message line.
+
+INCLUDE input/external1.fs ELSEWHERE1 \ <- execute [<C-D> here
+
+\ TEST:    Test definition searches in included files without a
+\   filename extension.
+\ EXECUTE: With the cursor on the word ELSEWHERE execute the Vim
+\   [<C-D> command.
+\ RESULT:  The definition of ELSEWHERE2 should be displayed in
+\   the message line.
+
+INCLUDE input/external2 ELSEWHERE2 \ <- execute [<C-D> here
 
 \ vim: set tw=64:
