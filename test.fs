@@ -14,6 +14,16 @@
 FALSE [IF] comment [ENDIF]
 FALSE [IF] comment [THEN]
 
+\ comment folding
+
+(    Test: Comment folding
+  Execute: :set foldmethod=syntax
+   Result: These three lines should be folded.)
+
+\    Test: Multiple line comment folding
+\ Execute: :set foldmethod=syntax
+\  Result: These three lines should be folded.
+
 \ --- Strings
 
 \ Verify that strings have their own color.
