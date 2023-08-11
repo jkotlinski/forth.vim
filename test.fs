@@ -403,7 +403,7 @@ XHOLD
 \   "[THEN]" ignoring those words contained in strings and
 \   comments.
 
-0 [IF]
+DEBUG [IF]
     S" skip these [ELSE] [THEN]"
 [ELSE]
     ( skip these [ELSE] [THEN])
