@@ -403,7 +403,7 @@ XHOLD
 \   "[THEN]" ignoring those words contained in strings and
 \   comments.
 
-0 [IF]
+DEBUG [IF]
     S" skip these [ELSE] [THEN]"
 [ELSE]
     ( skip these [ELSE] [THEN])
@@ -423,17 +423,15 @@ MEANING \ <- execute [d here
 \ TEST:    Test definition searches in included files.
 \ EXECUTE: With the cursor on the word ELSEWHERE1 execute the
 \   Vim [<C-D> command.
-\ RESULT:  The definition of ELSEWHERE1 should be displayed in
-\   the message line.
+\ RESULT:  A jump to the definition of ELSEWHERE1 is executed.
 
 INCLUDE input/external1.fs ELSEWHERE1 \ <- execute [<C-D> here
 
 \ TEST:    Test definition searches in included files without a
 \   filename extension.
-\ EXECUTE: With the cursor on the word ELSEWHERE execute the Vim
-\   [<C-D> command.
-\ RESULT:  The definition of ELSEWHERE2 should be displayed in
-\   the message line.
+\ EXECUTE: With the cursor on the word ELSEWHERE2 execute the
+\   Vim [<C-D> command.
+\ RESULT:  A jump to the definition of ELSEWHERE2 is executed.
 
 INCLUDE input/external2 ELSEWHERE2 \ <- execute [<C-D> here
 
