@@ -62,7 +62,7 @@ endif
 
 if (has("gui_win32") || has("gui_gtk")) && !exists("b:browsefilter")
   let b:browsefilter = "Forth Source Files (*.f *.fs *.ft *.fth *.4th)\t*.f;*.fs;*.ft;*.fth;*.4th\n" ..
-	\	       "All Files (*.*)\t*.*\n"
+	\	       "All Files\t*\n"
   let b:undo_ftplugin ..= " | unlet! b:browsefilter"
 endif
 
