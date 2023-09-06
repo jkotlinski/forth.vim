@@ -1,0 +1,23 @@
+# Matchit motions
+
+Given forth (A colon definition):
+  : noop ( -- ) ;
+Do (Execute % with cursor on ":"):
+  %
+Then (Expect cursor jump to ";"):
+  AssertEqual ";", expand("<cword>")
+
+Given forth (A colon definition):
+  : noop ( -- ) ;
+Do (Execute % with cursor on ";"):
+  f;%
+Then (Expect cursor jump to ":"):
+  AssertEqual ":", expand("<cword>")
+
+# Definition searches with 'define' and 'include'
+
+Execute (Execute :djump on word defined in an included file (with no filename extension)):
+  edit input/b.fs
+  djump /foo/
+Then (Expect cursor jump to definition):
+  Assert getline(".") =~ ': foo '

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+
+vim -esNu <(
+  cat << EOF
+  set rtp^=..
+  filetype off
+  filetype plugin indent on
+  syntax enable
+  packadd matchit
+EOF
+) -c "Vader! *.vader"

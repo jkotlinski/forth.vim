@@ -1,0 +1,124 @@
+# Comments {{{1
+
+Given forth (A single line PAREN comment):
+  ( ... )
+Execute (Check syntax group):
+  AssertEqual "forthComment", SyntaxOf('(')
+  AssertEqual "forthComment", SyntaxOf('\.\{3}')
+  AssertEqual "forthComment", SyntaxOf(')')
+
+Given forth (A multiline PAREN comment):
+  (
+    ...
+  )
+Execute (Check syntax group):
+  AssertEqual "forthComment", SyntaxOf('(')
+  AssertEqual "forthComment", SyntaxOf('\.\{3}')
+  AssertEqual "forthComment", SyntaxOf(')')
+
+Given forth (A BACKSLASH comment):
+  \ ...
+Execute (Check syntax group):
+  AssertEqual "forthComment", SyntaxOf('\')
+  AssertEqual "forthComment", SyntaxOf('\.\{3}')
+
+Given forth (A BACKSLASH comment todo item):
+  \ TODO: something that will not be done
+Execute (Check syntax group):
+  AssertEqual "forthComment", SyntaxOf('\')
+  AssertEqual "forthTodo",    SyntaxOf('TODO')
+  AssertEqual "forthComment", SyntaxOf(':')
+
+Given forth (A PAREN comment todo item):
+  ( TODO: something that will not be done)
+Execute (Check syntax group):
+  AssertEqual "forthComment", SyntaxOf('(')
+  AssertEqual "forthTodo",    SyntaxOf('TODO')
+  AssertEqual "forthComment", SyntaxOf(':')
+
+# Strings {{{1
+
+Given forth (A S-QUOTE string):
+  S" s-quote"
+Execute (Check syntax group):
+  AssertEqual "forthString", SyntaxOf('S"')
+  AssertEqual "forthString", SyntaxOf('s-quote')
+  AssertEqual "forthString", SyntaxOf('"', 2)
+
+Given forth (A S-BACKSLASH-QUOTE string):
+  S\" s-backslash-quote"
+Execute (Check syntax group):
+  AssertEqual "forthString", SyntaxOf('S\\"')
+  AssertEqual "forthString", SyntaxOf('s-backslash-quote')
+  AssertEqual "forthString", SyntaxOf('"', 2)
+
+Given forth (A C-QUOTE string):
+  C" c-quote"
+Execute (Check syntax group):
+  AssertEqual "forthString", SyntaxOf('C"')
+  AssertEqual "forthString", SyntaxOf('c-quote')
+  AssertEqual "forthString", SyntaxOf('"', 2)
+
+Given forth (A DOT-QUOTE string):
+  ." dot-quote"
+Execute (Check syntax group):
+  AssertEqual "forthString", SyntaxOf('."')
+  AssertEqual "forthString", SyntaxOf('dot-quote')
+  AssertEqual "forthString", SyntaxOf('"', 2)
+
+Given forth (A custom string):
+  FOO" custom string matching word"
+Execute (Check syntax group):
+  AssertEqual "forthString", SyntaxOf('FOO"')
+  AssertEqual "forthString", SyntaxOf('custom string matching word')
+  AssertEqual "forthString", SyntaxOf('"', 2)
+
+Given forth (A S-BACKSLASH-QUOTE string with escape sequences):
+  S\" \a\b\e\f\l\m\n\q\r\t\v\z\"\xff\x00\\"
+Execute (Check syntax group):
+  for c in split('abeflmnqrtvz', '\zs')
+    AssertEqual "forthEscape", SyntaxOf('\\' .. c)
+  endfor
+  AssertEqual "forthEscape", SyntaxOf('\\"', 2)
+  AssertEqual "forthEscape", SyntaxOf('\\xff')
+  AssertEqual "forthEscape", SyntaxOf('\\x00')
+  AssertEqual "forthEscape", SyntaxOf('\\\\')
+
+Given forth (A S-BACKSLASH-QUOTE string with invalid uppercase escape sequences):
+  S\" \A\B\E\F\L\M\N\Q\R\T\V\Z\Xff\X00"
+Execute (Check syntax group):
+  for c in split('ABEFLMNQRTVZ', '\zs')
+    AssertEqual "forthString", SyntaxOf('\\' .. c)
+  endfor
+  AssertEqual "forthString", SyntaxOf('\\Xff')
+  AssertEqual "forthString", SyntaxOf('\\X00')
+
+# Spelling {{{1
+
+# TODO: why does this fail if it isn't the first spelling test? --djk
+Given forth (A S-BACKSLASH-QUOTE string with mispelt text):
+  S\" mispelt"
+Execute (Check spell check):
+  AssertEqual spellbadword()[0], "mispelt"
+
+Given forth (A S-QUOTE string with mispelt text):
+  S" mispelt"
+Execute (Check spell check):
+  AssertEqual spellbadword()[0], "mispelt"
+
+Given forth (A C-QUOTE string with mispelt text):
+  C" mispelt"
+Execute (Check spell check):
+  AssertEqual spellbadword()[0], "mispelt"
+
+Given forth (A PAREN comment with mispelt text):
+  ( mispelt)
+Execute (Check spell check):
+  AssertEqual spellbadword()[0], "mispelt"
+
+Given forth (A BACKSLASH comment with mispelt text):
+  \ mispelt
+Execute (Check spell check):
+  AssertEqual spellbadword()[0], "mispelt"
+
+# vim: set fdm=marker:
