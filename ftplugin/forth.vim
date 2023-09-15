@@ -58,6 +58,7 @@ if exists("loaded_matchit") && !exists("b:match_words")
   let b:match_ignorecase = 1
   let b:match_words = s:matchit_patterns[1:]->join(',')
   let b:undo_ftplugin ..= "| unlet! b:match_ignorecase b:match_words"
+  unlet s:matchit_patterns
 endif
 
 if (has("gui_win32") || has("gui_gtk")) && !exists("b:browsefilter")
@@ -68,4 +69,4 @@ endif
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
-unlet s:define_patterns s:include_patterns s:matchit_patterns
+unlet s:define_patterns s:include_patterns
